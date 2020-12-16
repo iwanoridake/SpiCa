@@ -5,7 +5,7 @@ public class PixAccess : MonoBehaviour
  {
 	Texture2D drawTexture ;
 	Color[] buffer;
-
+	
 	void Start () {
 		Texture2D mainTexture = (Texture2D) GetComponent<Renderer> ().material.mainTexture;
 		Color[] pixels = mainTexture.GetPixels();
@@ -26,7 +26,10 @@ public class PixAccess : MonoBehaviour
 				}
 			}
 		}
+		Debug.Log(p);
 	}
+
+	
 
 	void Update () 
 	{
@@ -34,8 +37,10 @@ public class PixAccess : MonoBehaviour
 		{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 100.0f)) {
+			if (Physics.Raycast (ray, out hit)) {
+				Debug.Log (hit.point);
 				Draw (hit.textureCoord * 256);
+				
 			}
 
 			drawTexture.SetPixels (buffer);

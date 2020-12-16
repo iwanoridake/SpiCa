@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/uWintab/Example/Scenes/byoga.unity
+    guid: 8463d17c35324df48b396685df26ffee
+  - enabled: 1
+    path: Assets/uWintab/Example/Scenes/imageload.unity
+    guid: 940957aa351c90b43b93ce89dbec1f6f
+  m_configObjects: {}
