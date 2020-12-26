@@ -44,7 +44,7 @@ public class Hider : MonoBehaviour
         
         if (image != null)
         {
-            image.GetComponent<MeshRenderer> ().material.shader = cullingtoggle.isOn ? Shader.Find("Unlit/Transparent") : imageMotoShader;
+            image.GetComponent<MeshRenderer> ().material.shader = cullingtoggle.isOn ? Shader.Find("Unlit/Transparent Cutout") : imageMotoShader;
         }
         
     }

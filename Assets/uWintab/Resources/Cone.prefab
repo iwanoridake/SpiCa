@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 823594034485182331}
   - component: {fileID: 2066144839992091645}
   - component: {fileID: 2891815773075065288}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cone
   m_TagString: 3dcanvas
   m_Icon: {fileID: 0}

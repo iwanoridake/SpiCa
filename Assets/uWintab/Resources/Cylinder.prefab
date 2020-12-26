@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7664106600161526307}
   - component: {fileID: 5401393109662980234}
   - component: {fileID: -3012812610225109156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: 3dcanvas
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7889898797056511299}
   - component: {fileID: 6752790135152602497}
   - component: {fileID: 5751514919149257186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: 3dcanvas
   m_Icon: {fileID: 0}
