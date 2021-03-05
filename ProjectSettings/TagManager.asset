@@ -6,6 +6,7 @@ TagManager:
   tags:
   - 3dcanvas
   - inputimage
+  - brush
   layers:
   - Default
   - TransparentFX
@@ -16,9 +17,9 @@ TagManager:
   - 
   - 
   - 3dcanvas
-  - 
-  - 
-  - 
+  - byoga1
+  - byoga2
+  - imputimage
   - 
   - 
   - 

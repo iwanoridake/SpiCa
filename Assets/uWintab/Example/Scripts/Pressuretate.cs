@@ -20,6 +20,7 @@ public class Pressuretate : MonoBehaviour
         transform.localPosition = pen.localPosition;
 
         var pressure = tablet_.pressure;
+        print(pressure);
         transform.localScale = new Vector3(pressure, pressure, 1f);
     }
 }

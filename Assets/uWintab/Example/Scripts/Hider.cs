@@ -9,6 +9,7 @@ public class Hider : MonoBehaviour
     // Start is called before the first frame update
     private GameObject canvas;
     private GameObject image;
+    public Camera mainC;
     private Color32 CanvasMotoColor;
     private Shader imageMotoShader;
     void Start(){
@@ -34,10 +35,23 @@ public class Hider : MonoBehaviour
 	
     public void OnCanvasToggleChanged(){
         
-        if (canvas != null)
+        /*if (canvas != null)
         {
             canvas.GetComponent<MeshRenderer> ().material.color = canvastoggle.isOn ? new Color32(0,0,0,0) : CanvasMotoColor;
-        }
+        }*/
+        
+        mainC.LayerCullingToggle("3dcanvas");
+        
+        
+    }
+    public void OnLayer1ToggleChanged(){
+        
+        mainC.LayerCullingToggle("byoga1");
+        
+    }
+    public void OnLayer2ToggleChanged(){
+        
+        mainC.LayerCullingToggle("byoga2");
         
     }
     public void OnCullingToggleChanged(){
@@ -53,5 +67,6 @@ public class Hider : MonoBehaviour
   
         SceneManager.LoadScene("imageload");
     }
+    
     
 }

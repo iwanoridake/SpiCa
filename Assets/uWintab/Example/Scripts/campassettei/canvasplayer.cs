@@ -68,6 +68,14 @@ public class canvasplayer : MonoBehaviour
 
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
     }
+    public void OnPlaneClick() {
+        Destroy(targetobj);
+        GameObject obj = (GameObject)Resources.Load ("Plane");
+        obj.tag = "3dcanvas";
+        
+
+        targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,-0.01f), Quaternion.Euler(-90f, 0f, 0f));
+    }
     public void OnConfirmClick() {
   
         SceneManager.LoadScene("byoga");
