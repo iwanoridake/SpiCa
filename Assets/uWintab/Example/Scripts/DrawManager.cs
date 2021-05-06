@@ -24,6 +24,7 @@ namespace uWintab
         private float nearD = 100;
         private Vector3 premousePos;
         Tablet tablet_;
+        public Slider hpSlider;
 
         private float timeElapsed=0;
         public float timeout = 0.05f;
@@ -36,6 +37,7 @@ namespace uWintab
 
         // Use this for initialization
         void Start () {
+            
             tablet_ = FindObjectOfType<Tablet>();
         }
         public void layerChange() {
@@ -57,7 +59,7 @@ namespace uWintab
         // Update is called once per frame
         void Update () {
             if (tooldropdown.value == 0)
-                brushmanger3();
+                brushmanger4();
             else if (tooldropdown.value == 1)
                 erasemanger();
             else if (tooldropdown.value == 2)
@@ -83,7 +85,7 @@ namespace uWintab
                 if(kesubrush != null)
                 {
                     if(nearD < 2)
-                     Destroy(kesubrush);
+                     Undo.DestroyObjectImmediate(kesubrush);
                     kesubrush = null;
                     nearD = 100;
                 }
@@ -148,7 +150,7 @@ namespace uWintab
 
 
 
-        private void brushmanger() {
+        private void brushmanger() {//マウス，LineRendererによる描画
             if (Input.GetMouseButton (0)) 
             {
                 Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -188,7 +190,7 @@ namespace uWintab
             }
         }
 
-        private void brushmanger2() {
+        private void brushmanger2() {//マウス，TrailRendererによる描画
             
             if (Input.GetMouseButtonDown (0)) 
             {
@@ -220,7 +222,7 @@ namespace uWintab
                 
             }
         }
-        private void brushmanger3() {
+        private void brushmanger3() {//タブレット，TrailRendererによる描画
             
             if (tablet_.pressure!=0) 
             {
@@ -236,8 +238,9 @@ namespace uWintab
                     //PrefabからLineObjectを生成
                     CurrentLineObject = Instantiate(TrailObjectPrefab, hit.point, Quaternion.identity);
                     CurrentLineObject.layer = 9 + layerdropdown.value;
-                    Undo.IncrementCurrentGroup();
-                    Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
+                    
+
+        
                     
                     }
                     
@@ -248,6 +251,8 @@ namespace uWintab
                 if(CurrentLineObject != null)
                 {
                     
+                    Undo.IncrementCurrentGroup();
+                    Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
                     CurrentLineObject = null;
                 }
@@ -256,11 +261,11 @@ namespace uWintab
                 
             }
         }
-        private void brushmanger4() {
+        private void brushmanger4() { //タブレット，LineRendererによる描画
             
             if (tablet_.pressure!=0) 
             {
-                Vector3 penpoint = new Vector3(tablet_.x*Screen.width, tablet_.y*Screen.height,0);
+                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width, tablet_.y*Screen.currentResolution.height,0);
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
@@ -271,10 +276,9 @@ namespace uWintab
                     //PrefabからLineObjectを生成
                     CurrentLineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                     CurrentLineObject.layer = 9 + layerdropdown.value;
-                    Undo.IncrementCurrentGroup();
-                    Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
+                    
                     }
-                    //ゲームオブジェクトからLineRendererコンポーネントを取得
+                    /*//ゲームオブジェクトからLineRendererコンポーネントを取得
                     LineRenderer render = CurrentLineObject.GetComponent<LineRenderer>();
 
                     //LineRendererからPositionsのサイズを取得
@@ -296,7 +300,7 @@ namespace uWintab
                         render.widthMultiplier = width;
                         kaisu++;
                         timeElapsed = 0;
-                    }
+                    }*/
                     
                 } 
             }
@@ -304,6 +308,8 @@ namespace uWintab
             {
                 if(CurrentLineObject != null)
                 {
+                    Undo.IncrementCurrentGroup();
+                    Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
                     
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
                     CurrentLineObject = null;
@@ -313,8 +319,15 @@ namespace uWintab
                 
             }
         }
-
-
+        public void Widthchange()
+        {
+ 
+           width=hpSlider.value;
+ 
+        }
+        public float GetWidth(){
+            return width;
+        }
 
         GameObject searchTag(Vector3 nowposition, string tagName){
         float tmpDis = 0;           //距離用一時変数
@@ -325,8 +338,8 @@ namespace uWintab
         //タグ指定されたオブジェクトを配列で取得する
         foreach (GameObject obj in  GameObject.FindGameObjectsWithTag(tagName)){
             
-            //LineRenderer line = obj.GetComponent<LineRenderer>();
-            TrailRenderer line = obj.GetComponent<TrailRenderer>();
+            LineRenderer line = obj.GetComponent<LineRenderer>();
+            //TrailRenderer line = obj.GetComponent<TrailRenderer>();
             
             var positions = new Vector3[line.positionCount];
             int cnt = line.GetPositions(positions);

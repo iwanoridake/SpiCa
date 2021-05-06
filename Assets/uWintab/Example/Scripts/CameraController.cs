@@ -10,16 +10,24 @@ public class CameraController : MonoBehaviour {
     [SerializeField, Range(0.1f, 1f)] private float rotateSpeed = 1f;
     private Vector3 preMousePosition;
     private Vector3 StartRelativePosition;
+    private Quaternion StartRelativeRotation;
+    private Vector3 StartTargetPosition;
+    private Quaternion StartTargetRotation;
     public Toggle rokurotoggle;
+    public Toggle reversetoggle;
     private bool RokuroRotateOn = false;
-
+    float _period = 5;
+    public Slider hpSlider;
 
     private void Start()
     {
         
-    
-        LookCameraTarget();
+        StartTargetRotation = CameraTarget.transform.rotation;
+        StartTargetPosition = CameraTarget.transform.position;
+        StartRelativeRotation = this.transform.rotation;
         StartRelativePosition = this.transform.position;
+        LookCameraTarget();
+        hpSlider.value=_period;
     }
 
     private void Update()
@@ -36,17 +44,21 @@ public class CameraController : MonoBehaviour {
         }
         if (RokuroRotateOn)
         {
+            
              //Vector3 diff = new Vector3(1f,0f,0f);
             //float d = distance();
             GameObject canvas = GameObject.FindGameObjectWithTag("3dcanvas");
-            float _period = 5;
+            
             if (canvas != null)
             {
                 //transform.Translate(-diff * Time.deltaTime * rotateSpeed * d);
+                
                 transform.RotateAround(
                     canvas.transform.position,
                     canvas.transform.up,
-                    360 / _period * Time.deltaTime
+                    reversetoggle.isOn?(-360 / _period * Time.deltaTime):(360 / _period * Time.deltaTime)
+                    
+                    
                 );
                 //LookCameraTarget();
                 //transform.position += transform.forward * ((transform.position - CameraTarget.transform.position).magnitude - d);//直線移動と曲線移動の誤差修正
@@ -61,7 +73,11 @@ public class CameraController : MonoBehaviour {
         return;
     }
     public void OnButtonClick() {
+        
         this.transform.position =  StartRelativePosition;
+        this.transform.rotation =  StartRelativeRotation;
+        CameraTarget.transform.rotation=StartTargetRotation;
+        CameraTarget.transform.position=StartTargetPosition;
         LookCameraTarget();
     }
     public void OnRokuroToggleChanged(){
@@ -69,6 +85,13 @@ public class CameraController : MonoBehaviour {
         RokuroRotateOn = rokurotoggle.isOn;
         
     }
+    public void Sppedchange()
+    {
+ 
+        _period=hpSlider.value;
+ 
+    }
+    
 
 
 
@@ -90,6 +113,14 @@ public class CameraController : MonoBehaviour {
             transform.Translate(-diff * Time.deltaTime * rotateSpeed * d);
             LookCameraTarget();
             transform.position += transform.forward * ((transform.position - CameraTarget.transform.position).magnitude - d);//直線移動と曲線移動の誤差修正
+        }
+        else if (Input.GetMouseButton(0))//平行移動
+        {
+            if(Input.mousePosition.x<Screen.width-300&&Input.mousePosition.x>300){
+                transform.Translate(-diff * Time.deltaTime * moveSpeed * d);
+                CameraTarget.transform.Translate(-diff * Time.deltaTime * moveSpeed * d);
+                LookCameraTarget();
+            }
         }
 
         preMousePosition = mousePosition;
