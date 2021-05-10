@@ -20,7 +20,7 @@ public class Uipen : MonoBehaviour
 
     void UpdatePosition()
     {
-        transform.position = new Vector3((tablet_.x)*Screen.currentResolution.width, (tablet_.y)*Screen.currentResolution.height,0);
+        transform.position = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
     }
 
 }

@@ -10,6 +10,7 @@ public class DrawFunctionLine : MonoBehaviour
 {
     DrawManager drawManager;
     GameObject player;
+    Canvas canvas;
     
     public float width = 1.0f;
     public float timeout = 0.03f;
@@ -20,33 +21,31 @@ public class DrawFunctionLine : MonoBehaviour
     private float timeElapsed=0;
     int kaisu = 0;
     static int senhonsu=0;
-
+    public Slider hpSlider;
     
     
-
     void Reset()
     {
         m_tr = this.gameObject.GetComponent<LineRenderer>();
         m_tr.widthMultiplier = 0.01f;
         //m_tr.minVertexDistance = 0.01f;
     }
-
     void Start()
     {
         tablet_ = FindObjectOfType<Tablet>();
         player = GameObject.Find ("Player");
         drawManager = player.GetComponent<DrawManager>();
         m_tr = this.gameObject.GetComponent<LineRenderer>();
+        canvas=GameObject.Find("mainCanvas").GetComponent<Canvas>();
+        hpSlider = canvas.transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
         drawingnow=true;
         
     }
-
     void LateUpdate()
     {
-        width=drawManager.width;
+        //width=drawManager.width;
         tabletdraw();
     }
-
     void mousedraw()
     {
         if(drawingnow)
@@ -60,10 +59,8 @@ public class DrawFunctionLine : MonoBehaviour
                     //print(hit.point);
                     //LineRendererからPositionsのサイズを取得
                     int NextPositionIndex = m_tr.positionCount;
-
                     //LineRendererのPositionsのサイズを増やす
                     m_tr.positionCount = NextPositionIndex + 1;
-
                     //LineRendererのPositionsに現在のコントローラーの位置情報を追加
                     m_tr.SetPosition(NextPositionIndex, hit.point);
                 }
@@ -73,7 +70,6 @@ public class DrawFunctionLine : MonoBehaviour
                 //m_tr.emitting = false;
             }
         }
-
         if (Input.GetMouseButtonUp (0)) 
         {
             drawingnow=false;
@@ -85,7 +81,8 @@ public class DrawFunctionLine : MonoBehaviour
         {
             if  (tablet_.pressure!=0)  
             {
-                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width, tablet_.y*Screen.currentResolution.height,0);
+                width=hpSlider.value;
+                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height,0);
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 RaycastHit hit;
@@ -101,7 +98,6 @@ public class DrawFunctionLine : MonoBehaviour
                         if(Vector3.Distance(hit.point, positions[cnt-1])>minDistance){
                             //LineRendererのPositionsのサイズを増やす
                             m_tr.positionCount = NextPositionIndex + 1;
-
                             //LineRendererのPositionsに現在のコントローラーの位置情報を追加
                             m_tr.SetPosition(NextPositionIndex, hit.point);
                             timeElapsed += Time.deltaTime;
@@ -127,11 +123,10 @@ public class DrawFunctionLine : MonoBehaviour
                         }
                     }else{
                         m_tr.material.renderQueue=m_tr.material.renderQueue+senhonsu;//一個前に
-                        Debug.Log(m_tr.material.renderQueue);
+                        //Debug.Log(m_tr.material.renderQueue);
                         //senhonsu++;
                         //LineRendererのPositionsのサイズを増やす
                         m_tr.positionCount = NextPositionIndex + 1;
-
                         //LineRendererのPositionsに現在のコントローラーの位置情報を追加
                         m_tr.SetPosition(NextPositionIndex, hit.point);
                         timeElapsed += Time.deltaTime;
@@ -168,11 +163,10 @@ public class DrawFunctionLine : MonoBehaviour
                 
             }
         }
-
-        if (tablet_.pressure==0)
+        /*if (tablet_.pressure==0)
         {
             drawingnow=false;
-        }
+        }*/
     }
     
 }

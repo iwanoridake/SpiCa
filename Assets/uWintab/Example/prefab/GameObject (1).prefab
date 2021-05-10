@@ -164,3 +164,4 @@ MonoBehaviour:
   width: 1
   timeout: 0.05
   minDistance: 0.01
+  hpSlider: {fileID: 0}
