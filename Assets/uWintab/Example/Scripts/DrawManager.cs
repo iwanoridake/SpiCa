@@ -265,7 +265,7 @@ namespace uWintab
             
             if (tablet_.pressure!=0) 
             {
-                Vector3 penpoint = new Vector3((Screen.currentResolution.width-Screen.width)+tablet_.x*Screen.currentResolution.width, tablet_.y*Screen.currentResolution.height,0);
+                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height,0);
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
