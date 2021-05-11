@@ -8540,27 +8540,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[3].r
-      value: 0.5803922
+      value: 0.40392157
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[3].g
-      value: 0.28235295
+      value: 0.12156863
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[2].r
-      value: 0.4039216
+      value: 0.24705882
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[2].g
-      value: 0.121568635
+      value: 0.63529414
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[2].b
-      value: 0.09019608
+      value: 0.8627451
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[3].b
-      value: 0.23529412
+      value: 0.09019608
       objectReference: {fileID: 0}
     - target: {fileID: 11423364, guid: 916ee089a0d7b63419075f91e1c657ec, type: 3}
       propertyPath: Setup.DefaultPresetColors.Array.data[7].r

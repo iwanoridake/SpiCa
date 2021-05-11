@@ -116,7 +116,7 @@ public class CameraController : MonoBehaviour {
         }
         else if (Input.GetMouseButton(0))//平行移動
         {
-            if(Input.mousePosition.x<Screen.width-300&&Input.mousePosition.x>300){
+            if(Input.mousePosition.x<Screen.width-600&&Input.mousePosition.x>600){
                 transform.Translate(-diff * Time.deltaTime * moveSpeed * d);
                 CameraTarget.transform.Translate(-diff * Time.deltaTime * moveSpeed * d);
                 LookCameraTarget();
