@@ -72,9 +72,10 @@ public class MovableBox : MonoBehaviour {
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z =  canvas.transform.position.z- Camera.main.transform.position.z;
-        
+        if(Input.mousePosition.x<Screen.width-Screen.width*0.15&&Input.mousePosition.x>Screen.width*0.15){
         moveTo = Camera.main.ScreenToWorldPoint(mousePos);
         canvas.transform.position = moveTo;
+        }
         
 
     }
