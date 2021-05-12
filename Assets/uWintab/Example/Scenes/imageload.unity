@@ -2169,7 +2169,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29066
+  m_Name: pb_Mesh31598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7128,10 +7128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1600, y: 900}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -21486,7 +21486,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 666905474, guid: 2e7d562ce59e97848aaa5bf4846f0a5f, type: 3}
       propertyPath: m_RootOrder
-      value: 40
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 5802308614771672480, guid: 2e7d562ce59e97848aaa5bf4846f0a5f,
         type: 3}
@@ -21576,7 +21576,7 @@ PrefabInstance:
     - target: {fileID: 7760273787820966968, guid: 2e7d562ce59e97848aaa5bf4846f0a5f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 39
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7d562ce59e97848aaa5bf4846f0a5f, type: 3}
