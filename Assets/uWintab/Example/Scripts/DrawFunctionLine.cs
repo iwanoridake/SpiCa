@@ -124,7 +124,7 @@ public class DrawFunctionLine : MonoBehaviour
                     }else{
                         m_tr.material.renderQueue=m_tr.material.renderQueue+senhonsu;//一個前に
                         //Debug.Log(m_tr.material.renderQueue);
-                        senhonsu++;
+                        //senhonsu++;
                         //LineRendererのPositionsのサイズを増やす
                         m_tr.positionCount = NextPositionIndex + 1;
                         //LineRendererのPositionsに現在のコントローラーの位置情報を追加
