@@ -42,9 +42,10 @@ public class DrawFunctionLine : MonoBehaviour
     {
         tablet_ = FindObjectOfType<Tablet>();
         player = GameObject.Find ("Player");
+        m_tr = this.gameObject.GetComponent<LineRenderer>();
         drawManager = player.GetComponent<DrawManager>();
         canvas=GameObject.Find("mainCanvas").GetComponent<Canvas>();
-        hpSlider = canvas.transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
+        hpSlider = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
         drawingnow=true;
         
     }

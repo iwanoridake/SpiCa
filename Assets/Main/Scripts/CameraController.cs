@@ -15,11 +15,11 @@ public class CameraController : MonoBehaviour {
     private Quaternion StartRelativeRotation;
     private Vector3 StartTargetPosition;
     private Quaternion StartTargetRotation;
-    public Toggle rokurotoggle;
-    public Toggle reversetoggle;
+    [SerializeField] Toggle rokurotoggle;
+    [SerializeField] Toggle reversetoggle;
     private bool RokuroRotateOn = false;
     float _period = 5;
-    public Slider hpSlider;
+    [SerializeField] Slider hpSlider;
 
     private void Start()
     {

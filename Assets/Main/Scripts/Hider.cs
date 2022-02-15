@@ -8,6 +8,7 @@ public class Hider : MonoBehaviour
 {
     // 3Dキャンバスやレイヤを見えなくするためのクラス．
     //ついでにバックフェース火リングとキャンバス変形に戻る時のボタンのメソッドもある．なんで？
+    //キャンバス回転いったんここにかくわ　てへぺろ
 
     //今使ってるキャンバス
     private GameObject canvas;
@@ -21,6 +22,16 @@ public class Hider : MonoBehaviour
     private Color32 CanvasMotoColor;
     //画像のシェーダも格納
     private Shader imageMotoShader;
+    
+    //レイヤーとこのキャンバストグル
+    [SerializeField] Toggle canvastoggle;
+    //アピアランスパネルのバックフェースカリングのトグル
+    [SerializeField] Toggle cullingtoggle;
+    [SerializeField]Toggle CanvasAnimationToggle;
+    private bool CanvasAnimationOn = false;
+
+    float _period = 5;
+
     void Start(){
         canvas = GameObject.FindGameObjectWithTag("3dcanvas");
         image = GameObject.FindGameObjectWithTag("inputimage");
@@ -33,11 +44,32 @@ public class Hider : MonoBehaviour
 
     }    
     
+    private void Update()
+    {
+        //アニメーションさせる
+        if (CanvasAnimationOn)
+        {            
+            if (canvas != null)
+            {
+                
+                canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
+                
+            }
+                
+            
+            
+        }
+
+    }
+
+    //キャンバスアニメーション用
+    public void OnCanvasAnimationToggleChanged(){
+     
+        CanvasAnimationOn = CanvasAnimationToggle.isOn;
+        
+    }
+    
  
-    //レイヤーとこのキャンバストグル
-    [SerializeField] Toggle canvastoggle;
-    //アピアランスパネルのバックフェースカリングのトグル
-    [SerializeField] Toggle cullingtoggle;
     
     
 	//キャンバストグル用

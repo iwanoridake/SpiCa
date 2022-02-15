@@ -272,7 +272,9 @@ namespace uWintab
             
             if (tablet_.pressure!=0) 
             {
-                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height,0);
+                //上が液タブの時・下は板タブの時
+                Vector3 penpoint =  new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
+                
                 
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
@@ -282,6 +284,7 @@ namespace uWintab
                     {
                     //PrefabからLineObjectを生成
                     CurrentLineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
                     CurrentLineObject.layer = 9 + layerdropdown.value;
                     
                     }

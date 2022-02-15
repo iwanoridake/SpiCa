@@ -21,6 +21,7 @@ public class UIpen : MonoBehaviour
 
     void UpdatePosition()
     {
+        //液タブの時はこれで
         transform.position = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
     }
 

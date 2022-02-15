@@ -97,6 +97,8 @@ namespace Painter3D
             m_MaxSaveIndex = PlayerPrefs.GetInt("m_MaxSaveIndex", 0);
             m_CurrentLoadedIndex = 0;
             m_MaxSaveIndex = m_SaveIndex;
+
+            
         }
         
         
