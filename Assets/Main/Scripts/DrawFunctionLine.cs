@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +6,11 @@ using UnityEditor;
 namespace uWintab
 {
 [RequireComponent(typeof(LineRenderer))]
+
+//主にブラシの筆圧制御をするクラス．
 public class DrawFunctionLine : MonoBehaviour
 {
+    
     DrawManager drawManager;
     GameObject player;
     Canvas canvas;
@@ -15,15 +18,20 @@ public class DrawFunctionLine : MonoBehaviour
     public float width = 1.0f;
     public float timeout = 0.03f;
     public float minDistance = 0.01f;
+    //ブラシが持ってるラインレンダラー
     LineRenderer m_tr;
     Tablet tablet_;
     bool drawingnow=false;
     private float timeElapsed=0;
+    
+    //筆圧制御に使う．点の数を格納
     int kaisu = 0;
+    //レンダリングの順番を制御するために，いままでのすとろーくのほんすうをかくのう
     static int senhonsu=0;
+    //ブラシテクスチャのスライダ用
     public Slider hpSlider;
     
-    
+    //いろいろ格納
     void Reset()
     {
         m_tr = this.gameObject.GetComponent<LineRenderer>();
@@ -35,7 +43,6 @@ public class DrawFunctionLine : MonoBehaviour
         tablet_ = FindObjectOfType<Tablet>();
         player = GameObject.Find ("Player");
         drawManager = player.GetComponent<DrawManager>();
-        m_tr = this.gameObject.GetComponent<LineRenderer>();
         canvas=GameObject.Find("mainCanvas").GetComponent<Canvas>();
         hpSlider = canvas.transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
         drawingnow=true;
@@ -46,6 +53,8 @@ public class DrawFunctionLine : MonoBehaviour
         //width=drawManager.width;
         tabletdraw();
     }
+
+    //マウス用
     void mousedraw()
     {
         if(drawingnow)
@@ -75,6 +84,7 @@ public class DrawFunctionLine : MonoBehaviour
             drawingnow=false;
         }
     }
+    //タブレット用
     void tabletdraw()
     {
         if(drawingnow)
@@ -123,8 +133,8 @@ public class DrawFunctionLine : MonoBehaviour
                         }
                     }else{
                         m_tr.material.renderQueue=m_tr.material.renderQueue+senhonsu;//一個前に
-                        //Debug.Log(m_tr.material.renderQueue);
-                        //senhonsu++;
+                        
+                        
                         //LineRendererのPositionsのサイズを増やす
                         m_tr.positionCount = NextPositionIndex + 1;
                         //LineRendererのPositionsに現在のコントローラーの位置情報を追加

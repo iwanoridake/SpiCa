@@ -240,10 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a780baf86c264c04f9e92f3eeb7c314e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScale: {x: 1.92, y: 1.08}
-  hoverHeight: 0.03
-  tablet_: {fileID: 0}
-  z_: 0
 --- !u!114 &23856676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,10 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d10885bbac4e546a779b4f8016642a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScale: {x: 1.92, y: 1.08}
-  hoverHeight: 0.03
-  tablet_: {fileID: 0}
-  y_: 0
 --- !u!1 &44858791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,8 +1292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229cf7e296667964d80bdfdafdb1fd79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawTexture: {fileID: 0}
-  buffer: []
 --- !u!33 &253866226
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1763,8 +1753,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefe0a5cf5b04734f8307f5936f2d7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pen: {fileID: 1402445619}
-  tablet_: {fileID: 0}
 --- !u!1 &318372772
 GameObject:
   m_ObjectHideFlags: 0
@@ -6749,10 +6737,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1298302531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5bb88ec3711bf48b7727c9f381bfab, type: 3}
+  m_Script: {fileID: 11500000, guid: 332ae48c8a90d394e93b5a868256577a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tablet_: {fileID: 0}
 --- !u!114 &1298302534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6921,10 +6908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d10885bbac4e546a779b4f8016642a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localScale: {x: 1.92, y: 1.08}
-  hoverHeight: 0.03
-  tablet_: {fileID: 0}
-  y_: 0
 --- !u!1 &1429914666
 GameObject:
   m_ObjectHideFlags: 0

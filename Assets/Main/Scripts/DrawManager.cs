@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +6,11 @@ using UnityEditor;
 namespace uWintab
 {
     public class DrawManager : MonoBehaviour {
-        //DrawManagerは
+        //ブラシや消しゴムを管理するクラス．
+        //あとマウスで描くとき用のコードも格納．
 
         
-        //SerializeFieldをつけるとInspectorウィンドウからゲームオブジェクトやPrefabを指定できます。
+        //
         [SerializeField] GameObject LineObjectPrefab;
         [SerializeField] GameObject TrailObjectPrefab;
         [SerializeField] private Dropdown layerdropdown;
@@ -19,9 +20,13 @@ namespace uWintab
 
         //現在描画中のLineObject;
         private GameObject CurrentLineObject = null;
+        //消しゴム適用
         private GameObject kesubrush = null;
+        //選択適用
         private GameObject selectbrush = null;
+        //レイヤーはデフォルトで1
         private int layernumber = 1;
+        //消す範囲
         private float nearD = 100;
         private Vector3 premousePos;
         Tablet tablet_;
@@ -41,6 +46,7 @@ namespace uWintab
             
             tablet_ = FindObjectOfType<Tablet>();
         }
+        //レイヤードロップダウン用メソッド
         public void layerChange() {
             if (layerdropdown.value == 0)
             {
@@ -52,13 +58,10 @@ namespace uWintab
                 layernumber = 2;
             }
         }   
-        public void toolChange() {
-            
-        } 
+        
 
-
-        // Update is called once per frame
         void Update () {
+            //ツールドロップダウンはここで対応
             if (tooldropdown.value == 0)
                 brushmanger4();
             else if (tooldropdown.value == 1)
@@ -67,6 +70,7 @@ namespace uWintab
                 selectmanger();
             
         }
+        //消しゴム
         private void erasemanger() {
             
              if (Input.GetMouseButton (0)) 
@@ -96,7 +100,7 @@ namespace uWintab
             }
 
         }
-
+        //選択
         private void selectmanger() {
             
              if (Input.GetMouseButtonDown (0)) 
@@ -121,6 +125,7 @@ namespace uWintab
 
 
         }
+        //移動
         private void MoveLine(GameObject selectbrush, Vector3 mousepos) {
 
             //mousepos.z=0;
@@ -262,12 +267,13 @@ namespace uWintab
                 
             }
         }
+        
         private void brushmanger4() { //タブレット，LineRendererによる描画
             
             if (tablet_.pressure!=0) 
             {
                 Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height,0);
-                //print(penpoint);
+                
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
                 RaycastHit hit;
@@ -279,29 +285,7 @@ namespace uWintab
                     CurrentLineObject.layer = 9 + layerdropdown.value;
                     
                     }
-                    /*//ゲームオブジェクトからLineRendererコンポーネントを取得
-                    LineRenderer render = CurrentLineObject.GetComponent<LineRenderer>();
-
-                    //LineRendererからPositionsのサイズを取得
-                    int NextPositionIndex = render.positionCount;
-
-                    //LineRendererのPositionsのサイズを増やす
-                    render.positionCount = NextPositionIndex + 1;
-
-                    //LineRendererのPositionsに現在のコントローラーの位置情報を追加
-                    render.SetPosition(NextPositionIndex, hit.point);
-
-                    timeElapsed += Time.deltaTime;
-                    if(timeElapsed>timeout)
-                    {
-                        var pressure = tablet_.pressure;
-                        AnimationCurve curve = render.widthCurve;
-                        curve.AddKey(kaisu*timeout, 1.0f*pressure);
-                        render.widthCurve = curve;
-                        render.widthMultiplier = width;
-                        kaisu++;
-                        timeElapsed = 0;
-                    }*/
+                    
                     
                 } 
             }
@@ -309,6 +293,7 @@ namespace uWintab
             {
                 if(CurrentLineObject != null)
                 {
+                    //アンドゥできるようにしておく
                     Undo.IncrementCurrentGroup();
                     Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
                     
@@ -320,16 +305,19 @@ namespace uWintab
                 
             }
         }
+        //ブラシ幅のスライダ用
         public void Widthchange()
         {
  
            width=hpSlider.value;
  
         }
+        //スライダに現在の太さを返す
         public float GetWidth(){
             return width;
         }
 
+        //消しゴムが近くのブラシ探す用
         GameObject searchTag(Vector3 nowposition, string tagName){
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
