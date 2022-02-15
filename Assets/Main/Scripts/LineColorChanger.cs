@@ -49,7 +49,7 @@ public class LineColorChanger : MonoBehaviour
     //texファイル名の取得
     private void ReadFiles()
     {
-        string path = Application.dataPath + "/" + "uWintab" + "/" + "Resources";
+        string path = Application.dataPath + "/" + "Main" + "/" + "Resources";
         texfilepaths = System.IO.Directory.GetFiles(path, "*.mat", System.IO.SearchOption.AllDirectories);
         
     } 
