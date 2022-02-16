@@ -77,7 +77,6 @@ public class Hider : MonoBehaviour
         
         
         mainC.LayerCullingToggle("3dcanvas");
-        subC.LayerCullingToggle("3dcanvas");
         
         
     }

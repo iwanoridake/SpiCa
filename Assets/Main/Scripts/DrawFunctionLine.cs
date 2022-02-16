@@ -146,9 +146,9 @@ public class DrawFunctionLine : MonoBehaviour
                             AnimationCurve curve = m_tr.widthCurve;
                             for(int i=1;i<=kaisu;i++){
                                 float x = m_tr.widthCurve.keys[i].time*(((float)kaisu+1.0f)/((float)kaisu+2.0f));
-                                //Debug.Log(x);
+                                
                                 curve.MoveKey(i,new Keyframe(x,m_tr.widthCurve.keys[i].value));
-                                //Debug.Log(curve.keys[i].time);
+                                
                             }
                             
                             curve.AddKey(((float)kaisu+1.0f)/((float)kaisu+2.0f), 1.0f*pressure);

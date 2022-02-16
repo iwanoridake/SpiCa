@@ -68,6 +68,8 @@ namespace uWintab
                 erasemanger();
             else if (tooldropdown.value == 2)
                 selectmanger();
+
+           
             
         }
         //消しゴム
@@ -219,7 +221,7 @@ namespace uWintab
             {
                 if(CurrentLineObject != null)
                 {
-                    
+                    CurrentLineObject.transform.rotation =  Quaternion.Euler(0,0, 0);
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
                     CurrentLineObject = null;
                 }
@@ -285,6 +287,7 @@ namespace uWintab
                     //PrefabからLineObjectを生成
                     CurrentLineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                     CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
+                   
                     CurrentLineObject.layer = 9 + layerdropdown.value;
                     
                     }
