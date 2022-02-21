@@ -107,6 +107,10 @@ public class DrawFunctionLine : MonoBehaviour
                     
                     if(cnt>0){
                         if(Vector3.Distance(hit.point, positions[cnt-1])>minDistance){
+                            
+                            //上書きシェーダはこっち
+                            //senhonsu++;
+
                             //LineRendererのPositionsのサイズを増やす
                             m_tr.positionCount = NextPositionIndex + 1;
                             //LineRendererのPositionsに現在のコントローラーの位置情報を追加
