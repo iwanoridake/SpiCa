@@ -69,8 +69,8 @@ public class Painter3DManager : MonoBehaviour
             Instance = this;
             
             // Set the singleton instance
-            m_CanvasParent = new GameObject("_Canvas parent").transform;
-            m_CanvasParent.SetParent(transform);
+            //m_CanvasParent = new GameObject("_Canvas parent").transform;
+           // m_CanvasParent.SetParent(transform);
            
 
             // Set the onstroke complete event 

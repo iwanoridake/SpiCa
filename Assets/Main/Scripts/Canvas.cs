@@ -11,6 +11,11 @@ public class Canvas : MonoBehaviour
     public List<Stroke> m_Strokes = new List<Stroke>();
     public List<Stroke> Strokes { get { return m_Strokes; } }
 
+    void Start()
+    {
+        Painter3DManager.Instance.ActiveCanvas = this;
+
+    }
 
     
 

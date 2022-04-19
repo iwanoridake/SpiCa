@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8268852803768851926}
   - component: {fileID: 4002875833544435145}
   - component: {fileID: 3557913795262335389}
+  - component: {fileID: -92157122278703116}
   m_Layer: 8
   m_Name: Capsule
   m_TagString: 3dcanvas
@@ -12640,6 +12641,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &-92157122278703116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004548793181049920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1d5a43f3c88884289dcd4d20bf32a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Strokes: []
 --- !u!1 &8272496839712147921
 GameObject:
   m_ObjectHideFlags: 0
