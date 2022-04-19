@@ -7,8 +7,9 @@ public class Stroke : MonoBehaviour
 {
     public GameObject LineObject=null;
 
-    public Stroke(GameObject LineObjectPrefab, int value){
+    public void Addvalue(GameObject LineObjectPrefab, int value){
         LineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        
         LineObject.layer = 9 + value;
     }
 

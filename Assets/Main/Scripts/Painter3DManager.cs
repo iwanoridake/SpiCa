@@ -154,7 +154,7 @@ public class Painter3DManager : MonoBehaviour
         public void ClearRedo()
         {
             foreach (Stroke s in m_UndoStack)
-                Destroy(s.gameObject);
+                Destroy(s.LineObject);
 
             m_UndoStack.Clear();
         }

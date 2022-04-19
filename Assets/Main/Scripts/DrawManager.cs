@@ -178,8 +178,10 @@ namespace uWintab
                     if(CurrentStroke == null)
                     {
                     //PrefabからLineObjectを生成
-                    CurrentStroke = new Stroke(LineObjectPrefab,layerdropdown.value);
-                    Painter3DManager.Instance.ActiveCanvas.AddStroke(CurrentStroke);
+                    CurrentStroke = gameObject.AddComponent<Stroke>();
+                    CurrentStroke.Addvalue(LineObjectPrefab,layerdropdown.value);
+                    
+                    //Painter3DManager.Instance.ActiveCanvas.AddStroke(CurrentStroke);
                     //CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
                    
                     
