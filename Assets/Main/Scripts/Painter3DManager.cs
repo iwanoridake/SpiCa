@@ -66,7 +66,17 @@ public class Painter3DManager : MonoBehaviour
         void Awake()
         {
             // Set the singleton instance
-            Instance = this;
+            
+
+            if (Instance == null) {
+ 
+                Instance = this;
+                DontDestroyOnLoad (gameObject);
+            }
+            else {
+ 
+            Destroy (gameObject);
+            }
             
             // Set the singleton instance
             //m_CanvasParent = new GameObject("_Canvas parent").transform;

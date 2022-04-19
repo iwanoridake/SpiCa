@@ -15,6 +15,7 @@ public class DrawFunctionLine : MonoBehaviour
     DrawManager drawManager;
     GameObject player;
     Canvas canvas;
+    private GameObject Pointer;
     
     
     public float width = 1.0f;
@@ -44,8 +45,9 @@ public class DrawFunctionLine : MonoBehaviour
     {
         tablet_ = FindObjectOfType<Tablet>();
         player = GameObject.Find ("Player");
+        Pointer = GameObject.Find ("Pointer");
         m_tr = this.gameObject.GetComponent<LineRenderer>();
-        drawManager = player.GetComponent<DrawManager>();
+        //drawManager = player.GetComponent<DrawManager>();
         canvas=GameObject.Find("mainCanvas").GetComponent<Canvas>();
         hpSlider = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
         drawingnow=true;
@@ -95,7 +97,7 @@ public class DrawFunctionLine : MonoBehaviour
             if  (tablet_.pressure!=0)  
             {
                 width=hpSlider.value;
-                Vector3 penpoint = drawManager.penpoint;
+                Vector3 penpoint = Pointer.GetComponent<UIpen>().penposition;
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 RaycastHit hit;

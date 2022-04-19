@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using SpiCa;
+using Canvas = SpiCa.Canvas;
+
 namespace uWintab
 {
     namespace SpiCa{
@@ -174,14 +176,15 @@ namespace uWintab
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
                 RaycastHit hit;
-                if (Physics.Raycast (ray, out hit)&& hit.collider.gameObject.layer == 8) {
+                if (Physics.Raycast (ray, out hit)&& hit.collider.gameObject.layer == 8 &&hit.collider.gameObject.GetComponent<Canvas>() == Painter3DManager.Instance.ActiveCanvas) {
                     if(CurrentStroke == null)
                     {
                     //PrefabからLineObjectを生成
-                    CurrentStroke = gameObject.AddComponent<Stroke>();
-                    CurrentStroke.Addvalue(LineObjectPrefab,layerdropdown.value);
+                    GameObject CurrentLineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    CurrentStroke = CurrentLineObject.AddComponent<Stroke>();
+                    CurrentStroke.Addvalue(layerdropdown.value);
                     
-                    //Painter3DManager.Instance.ActiveCanvas.AddStroke(CurrentStroke);
+                    Painter3DManager.Instance.ActiveCanvas.AddStroke(CurrentStroke);
                     //CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
                    
                     

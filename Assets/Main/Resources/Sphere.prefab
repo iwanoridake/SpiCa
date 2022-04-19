@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 5751514919149257186}
   - component: {fileID: 3788054565062829613}
   - component: {fileID: 8398501005892163568}
+  - component: {fileID: -8154919066535257897}
   m_Layer: 8
   m_Name: Sphere
   m_TagString: 3dcanvas
@@ -11778,3 +11779,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &-8154919066535257897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6488846941458907040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1d5a43f3c88884289dcd4d20bf32a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Strokes: []

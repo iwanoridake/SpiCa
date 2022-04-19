@@ -10,11 +10,46 @@ public class Canvas : MonoBehaviour
     // キャンバスに含まれるストローク
     public List<Stroke> m_Strokes = new List<Stroke>();
     public List<Stroke> Strokes { get { return m_Strokes; } }
+    private TransformData prevTransformData;
+    private TransformData nowTransformData;
+    private GameObject tempobj;
 
-    void Start()
+    void Awake()
     {
+        if(Painter3DManager.Instance.ActiveCanvas !=null){
+            tempobj = Painter3DManager.Instance.ActiveCanvas.gameObject;
+            tempobj.SetActive(false);
+        }
+        
         Painter3DManager.Instance.ActiveCanvas = this;
+        Painter3DManager.Instance.AllCanvases.Add(this);
+        
+        prevTransformData = new TransformData(this.gameObject.transform);
+        nowTransformData = new TransformData(this.gameObject.transform);
+        this.gameObject.transform.hasChanged = false;
 
+
+    }
+
+    void Update()
+    {
+        //キャンバスが変形された場合いっしょにブラシも動く
+        if (this.gameObject.transform.hasChanged)
+        {
+            foreach(Stroke element in m_Strokes)
+            {
+                nowTransformData = new TransformData(this.gameObject.transform);
+                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+
+                //element.LineObject.transform.position += nowTransform.position-prevTransformPos;
+                //element.LineObject.transform.rotation *= nowTransform.rotation* Quaternion.Inverse(prevTransform.rotation); 
+
+            }
+
+            
+            transform.hasChanged = false;
+            prevTransformData = new TransformData(this.gameObject.transform);
+        }
     }
 
     
@@ -30,7 +65,7 @@ public class Canvas : MonoBehaviour
 
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
-            s.transform.SetParent(transform);
+            //s.transform.SetParent(transform);
 
             // Turn this on if you want to keep brush stroks consistent to canvas scale rather than world
             //s.transform.localScale = Vector3.one;

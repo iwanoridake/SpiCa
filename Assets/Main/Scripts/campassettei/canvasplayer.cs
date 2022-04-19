@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using SpiCa;
 
+namespace SpiCa{
 public class canvasplayer : MonoBehaviour
 {
     public static GameObject targetobj;
+    private Canvas activeCanvas;
     
     // X軸座標を制御する Slider オブジェクトを格納する変数
     public Slider sliderPosX;
@@ -34,47 +37,54 @@ public class canvasplayer : MonoBehaviour
         
     }
     public void OnSphereClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Sphere");
         obj.tag = "3dcanvas";
     
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+       
     }
     public void OnCubeClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Cube");
         obj.tag = "3dcanvas";
  
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+
+    
     }
     public void OnCylinderClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Cylinder");
         obj.tag = "3dcanvas";
 
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+
     }
     public void OnConeClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Cone");
         obj.tag = "3dcanvas";
 
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+   
     }
     public void OnCapsuleClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Capsule");
         obj.tag = "3dcanvas";
 
         targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+
     }
     public void OnPlaneClick() {
-        Destroy(targetobj);
+        //Destroy(targetobj);
         GameObject obj = (GameObject)Resources.Load ("Plane");
         obj.tag = "3dcanvas";
         
 
-        targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,-0.01f), Quaternion.Euler(-90f, 0f, 0f));
+        targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+  
     }
     public void OnConfirmClick() {
   
@@ -171,4 +181,5 @@ public class canvasplayer : MonoBehaviour
         }
         
     }
+}
 }

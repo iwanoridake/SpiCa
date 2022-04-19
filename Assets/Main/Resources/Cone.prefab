@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1238421453930366696}
   - component: {fileID: 3243283619663434215}
   - component: {fileID: 6390369389219017633}
+  - component: {fileID: 3064477184228575998}
   m_Layer: 8
   m_Name: Cone
   m_TagString: 3dcanvas
@@ -5348,6 +5349,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &3064477184228575998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183604583972282030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1d5a43f3c88884289dcd4d20bf32a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Strokes: []
 --- !u!1 &3313256025807429244
 GameObject:
   m_ObjectHideFlags: 0

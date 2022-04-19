@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpiCa;
 
+namespace SpiCa{
 public class MovableBox : MonoBehaviour {
 
     private Vector3 moveTo;
@@ -24,7 +26,11 @@ public class MovableBox : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        canvas = GameObject.FindGameObjectWithTag("3dcanvas");
+
+        if(GameObject.FindGameObjectWithTag("3dcanvas")!=null)
+        {
+            //canvas = GameObject.FindGameObjectWithTag("3dcanvas");
+            canvas = Painter3DManager.Instance.ActiveCanvas.gameObject;
         if (canvas != null)
         {
 
@@ -52,6 +58,7 @@ public class MovableBox : MonoBehaviour {
             {
                 OnRotate(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
             }
+        }
         }
     }
 
@@ -141,4 +148,5 @@ public class MovableBox : MonoBehaviour {
         return;
     }
     
+}
 }

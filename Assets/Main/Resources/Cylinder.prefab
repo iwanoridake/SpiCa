@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3014848279474522751}
   - component: {fileID: 3014848279474522749}
   - component: {fileID: 3014848279474522738}
+  - component: {fileID: 6374742851861936471}
   m_Layer: 8
   m_Name: Cylinder
   m_TagString: 3dcanvas
@@ -1414,6 +1415,19 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &6374742851861936471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014848279474522743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1d5a43f3c88884289dcd4d20bf32a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Strokes: []
 --- !u!1 &5319404818080984102
 GameObject:
   m_ObjectHideFlags: 0
