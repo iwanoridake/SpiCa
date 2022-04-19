@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using SpiCa;
 namespace uWintab
 {
     namespace SpiCa{
@@ -22,7 +23,7 @@ namespace uWintab
         
 
         //現在描画中のLineObject;
-        private GameObject CurrentLineObject = null;
+        private Stroke CurrentStroke = null;
         //消しゴム適用
         private GameObject kesubrush = null;
         //選択適用
@@ -174,13 +175,13 @@ namespace uWintab
                 
                 RaycastHit hit;
                 if (Physics.Raycast (ray, out hit)&& hit.collider.gameObject.layer == 8) {
-                    if(CurrentLineObject == null)
+                    if(CurrentStroke == null)
                     {
                     //PrefabからLineObjectを生成
-                    CurrentLineObject = Instantiate(LineObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                    CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
+                    CurrentStroke = new Stroke(LineObjectPrefab,layerdropdown.value);
+                    //CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
                    
-                    CurrentLineObject.layer = 9 + layerdropdown.value;
+                    
                     
                     }
                     
@@ -189,14 +190,14 @@ namespace uWintab
             }
             if (tablet_.pressure==0)
             {
-                if(CurrentLineObject != null)
+                if(CurrentStroke != null)
                 {
                     //アンドゥできるようにしておく
                     Undo.IncrementCurrentGroup();
-                    Undo.RegisterCreatedObjectUndo (CurrentLineObject, "line");
+                    Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
                     
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
-                    CurrentLineObject = null;
+                    CurrentStroke= null;
                 }
                     
                 
