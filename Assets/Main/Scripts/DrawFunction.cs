@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 namespace uWintab
 {
+    namespace SpiCa{
 [RequireComponent(typeof(TrailRenderer))]
 public class DrawFunction : MonoBehaviour
 {
@@ -125,4 +126,4 @@ public class DrawFunction : MonoBehaviour
     }
     
 }
-}
+}}

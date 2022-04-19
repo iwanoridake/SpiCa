@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 namespace uWintab
 {
+    namespace SpiCa{
 [RequireComponent(typeof(LineRenderer))]
 
 //主にブラシの筆圧制御をするクラス．
@@ -14,6 +15,7 @@ public class DrawFunctionLine : MonoBehaviour
     DrawManager drawManager;
     GameObject player;
     Canvas canvas;
+    
     
     public float width = 1.0f;
     public float timeout = 0.03f;
@@ -93,7 +95,7 @@ public class DrawFunctionLine : MonoBehaviour
             if  (tablet_.pressure!=0)  
             {
                 width=hpSlider.value;
-                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height,0);
+                Vector3 penpoint = drawManager.penpoint;
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 RaycastHit hit;
@@ -185,4 +187,4 @@ public class DrawFunctionLine : MonoBehaviour
     }
     
 }
-}
+}}

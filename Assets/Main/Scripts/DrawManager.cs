@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 namespace uWintab
 {
+    namespace SpiCa{
     public class DrawManager : MonoBehaviour {
         //ブラシや消しゴムを管理するクラス．
         //あとマウスで描くとき用のコードも格納．
@@ -15,6 +16,8 @@ namespace uWintab
         [SerializeField] GameObject TrailObjectPrefab;
         [SerializeField] private Dropdown layerdropdown;
         [SerializeField] private Dropdown tooldropdown;
+        [SerializeField] GameObject Pointer;
+        
         
         
 
@@ -36,6 +39,7 @@ namespace uWintab
         public float timeout = 0.05f;
         public float width = 1.0f;
         int kaisu = 0;
+        public Vector3 penpoint;
         
         
 
@@ -61,6 +65,7 @@ namespace uWintab
         
 
         void Update () {
+            penpoint =  Pointer.GetComponent<UIpen>().penposition;
             //ツールドロップダウンはここで対応
             if (tooldropdown.value == 0)
                 brushmanger4();
@@ -234,8 +239,7 @@ namespace uWintab
             
             if (tablet_.pressure!=0) 
             {
-                Vector3 penpoint = new Vector3(tablet_.x*Screen.currentResolution.width, tablet_.y*Screen.currentResolution.height,0);
-                //print(penpoint);
+         
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
                 
                 RaycastHit hit;
@@ -274,8 +278,7 @@ namespace uWintab
             
             if (tablet_.pressure!=0) 
             {
-                //上が液タブの時・下は板タブの時
-                Vector3 penpoint =  new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
+                
                 
                 
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
@@ -362,4 +365,5 @@ namespace uWintab
         
     }
     }
+}
 }
