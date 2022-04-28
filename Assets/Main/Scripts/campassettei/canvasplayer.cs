@@ -83,7 +83,7 @@ public class canvasplayer : MonoBehaviour
         obj.tag = "3dcanvas";
         
 
-        targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.identity);
+        targetobj = Instantiate (obj, new Vector3(0.0f,0.0f,0.0f), Quaternion.Euler(-90f, 0f, 0f));
   
     }
     public void OnConfirmClick() {

@@ -488,6 +488,8 @@ MonoBehaviour:
   m_CurrentLoadedIndex: 0
   m_MaxSaveIndex: 0
   m_ModifierKey: 304
+  m_AllCanvases: []
+  m_ActiveCanvasIndex: 0
   m_CanvasCollider: {fileID: 0}
   m_UndoCount: 0
   m_ColourCount: 0
@@ -3449,7 +3451,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

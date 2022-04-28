@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using SpiCa;
 
+namespace SpiCa{
 public class Hider : MonoBehaviour
 {
     // 3Dキャンバスやレイヤを見えなくするためのクラス．
@@ -11,7 +13,7 @@ public class Hider : MonoBehaviour
     //キャンバス回転いったんここにかくわ　てへぺろ
 
     //今使ってるキャンバス
-    private GameObject canvas;
+    private Canvas canvas;
     //入れてる画像
     private GameObject image;
     //メインカメラ
@@ -33,7 +35,7 @@ public class Hider : MonoBehaviour
     float _period = 5;
 
     void Start(){
-        canvas = GameObject.FindGameObjectWithTag("3dcanvas");
+        canvas = Painter3DManager.Instance.ActiveCanvas;
         image = GameObject.FindGameObjectWithTag("inputimage");
 
         if (image != null)
@@ -46,13 +48,15 @@ public class Hider : MonoBehaviour
     
     private void Update()
     {
+        canvas = Painter3DManager.Instance.ActiveCanvas;
         //アニメーションさせる
         if (CanvasAnimationOn)
         {            
             if (canvas != null)
             {
                 
-                canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
+                //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
+                canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
                 
             }
                 
@@ -111,4 +115,5 @@ public class Hider : MonoBehaviour
     }
     
     
+}
 }

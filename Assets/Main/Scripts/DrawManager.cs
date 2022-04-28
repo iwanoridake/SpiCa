@@ -52,6 +52,9 @@ namespace uWintab
         void Start () {
             
             tablet_ = FindObjectOfType<Tablet>();
+
+            
+
         }
         //レイヤードロップダウン用メソッド
         public void layerChange() {
@@ -65,6 +68,8 @@ namespace uWintab
                 layernumber = 2;
             }
         }   
+        
+
         
 
         void Update () {
@@ -100,7 +105,12 @@ namespace uWintab
                 if(kesubrush != null)
                 {
                     if(nearD < 2)
-                     Undo.DestroyObjectImmediate(kesubrush);
+                    {
+                        int Index = Painter3DManager.Instance.ActiveCanvas.m_Strokes.FindIndex(s => s.name == kesubrush.name);
+                        Painter3DManager.Instance.ActiveCanvas.RemoveAndDestroyStroke( Index );
+                         //Undo.DestroyObjectImmediate(kesubrush);
+                    }
+
                     kesubrush = null;
                     nearD = 100;
                 }
@@ -199,8 +209,8 @@ namespace uWintab
                 if(CurrentStroke != null)
                 {
                     //アンドゥできるようにしておく
-                    Undo.IncrementCurrentGroup();
-                    Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
+                    //Undo.IncrementCurrentGroup();
+                    //Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
                     
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
                     CurrentStroke= null;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SpiCa;
+using System.Linq;
 
 namespace SpiCa{
     //各キャンバスにstrokeを紐づけ
@@ -21,12 +22,17 @@ public class Canvas : MonoBehaviour
             tempobj.SetActive(false);
         }
         
+        this.gameObject.name = "Canvas " + Painter3DManager.Instance.m_AllCanvases.Count;
         Painter3DManager.Instance.ActiveCanvas = this;
         Painter3DManager.Instance.AllCanvases.Add(this);
+        
+        Painter3DManager.Instance.m_ActiveCanvasIndex = Painter3DManager.Instance.m_AllCanvases.Count-1;
+
         
         prevTransformData = new TransformData(this.gameObject.transform);
         nowTransformData = new TransformData(this.gameObject.transform);
         this.gameObject.transform.hasChanged = false;
+    
 
 
     }
@@ -66,6 +72,7 @@ public class Canvas : MonoBehaviour
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
             //s.transform.SetParent(transform);
+            
 
             // Turn this on if you want to keep brush stroks consistent to canvas scale rather than world
             //s.transform.localScale = Vector3.one;

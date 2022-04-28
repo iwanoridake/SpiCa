@@ -33,13 +33,11 @@ public class Painter3DManager : MonoBehaviour
 
         #region Canvases
         // Canvas list and active canvas
-        List<Canvas> m_AllCanvases = new List<Canvas>();
-        int m_ActiveCanvasIndex = 0;
+        public List<Canvas> m_AllCanvases = new List<Canvas>();
+        public int m_ActiveCanvasIndex = 0;
         Canvas m_ActiveCanvas;
         public Canvas ActiveCanvas { get { return m_ActiveCanvas; } set { m_ActiveCanvas = value; } }
         public List<Canvas> AllCanvases { get { return m_AllCanvases; } }
-        Transform m_CanvasParent;
-        public Transform CanvasParent { get { return m_CanvasParent; } }
         #endregion       
 
         #region Undo/Redo
