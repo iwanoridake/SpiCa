@@ -148,7 +148,7 @@ public class DrawFunctionLine : MonoBehaviour
                         
                         //senhonsu = Painter3DManager.Instance.ActiveCanvas.Strokes.Count;
                         
-                        //m_tr.material.renderQueue += senhonsu;
+                        m_tr.material.renderQueue += senhonsu;
 
                     
                         //m_tr.material.SetTextureOffset("_MainTex", new Vector2(senhonsu, senhonsu*2));

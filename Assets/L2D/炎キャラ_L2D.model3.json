@@ -1,12 +1,12 @@
 {
 	"Version": 3,
 	"FileReferences": {
-		"Moc": "書き出し.moc3",
+		"Moc": "炎キャラ_L2D.moc3",
 		"Textures": [
-			"書き出し.1024/texture_00.png"
+			"炎キャラ_L2D.1024/texture_00.png"
 		],
-		"Physics": "書き出し.physics3.json",
-		"DisplayInfo": "書き出し.cdi3.json"
+		"Physics": "炎キャラ_L2D.physics3.json",
+		"DisplayInfo": "炎キャラ_L2D.cdi3.json"
 	},
 	"Groups": [
 		{
