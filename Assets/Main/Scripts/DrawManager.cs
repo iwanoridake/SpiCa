@@ -195,7 +195,7 @@ namespace uWintab
                     CurrentStroke.Addvalue(layerdropdown.value);
                     
                     Painter3DManager.Instance.ActiveCanvas.AddStroke(CurrentStroke);
-                    CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
+                    //CurrentLineObject.transform.parent = hit.collider.gameObject.transform;
                    
                     
                     
