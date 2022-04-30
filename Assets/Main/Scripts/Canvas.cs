@@ -47,9 +47,6 @@ public class Canvas : MonoBehaviour
                 nowTransformData = new TransformData(this.gameObject.transform);
                 nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
 
-                //element.LineObject.transform.position += nowTransform.position-prevTransformPos;
-                //element.LineObject.transform.rotation *= nowTransform.rotation* Quaternion.Inverse(prevTransform.rotation); 
-
             }
 
             
@@ -71,6 +68,7 @@ public class Canvas : MonoBehaviour
 
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
+            
             //s.transform.SetParent(transform);
             
 

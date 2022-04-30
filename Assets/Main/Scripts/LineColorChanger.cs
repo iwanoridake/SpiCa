@@ -43,6 +43,7 @@ public class LineColorChanger : MonoBehaviour
             //trailRenderer.endColor = color;
             lineRenderer.startColor = color;
             lineRenderer.endColor = color;
+            //lineRenderer.sharedMaterial.color = color;
             
         } );
     }

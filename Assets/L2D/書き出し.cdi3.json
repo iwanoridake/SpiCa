@@ -1,0 +1,81 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "スカート"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "上腕回転"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "耳"
+		},
+		{
+			"Id": "ParamBodyAngleZ",
+			"GroupId": "",
+			"Name": "体の回転　Z"
+		},
+		{
+			"Id": "ParamBreath",
+			"GroupId": "",
+			"Name": "呼吸"
+		},
+		{
+			"Id": "ParamHairFront",
+			"GroupId": "",
+			"Name": "髪揺れ　前"
+		},
+		{
+			"Id": "ParamHairSide",
+			"GroupId": "",
+			"Name": "髪揺れ　横"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "buki"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "himo1"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "himo2"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part",
+			"Name": "頭"
+		},
+		{
+			"Id": "Part2",
+			"Name": "←脚"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"ParamBodyAngleZ",
+			"ParamBreath"
+		],
+		[
+			"Param",
+			"Param3"
+		]
+	]
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using SpiCa;
 namespace uWintab
 {
     namespace SpiCa{
@@ -14,7 +15,7 @@ public class DrawFunctionLine : MonoBehaviour
     
     DrawManager drawManager;
     GameObject player;
-    Canvas canvas;
+    UnityEngine.Canvas canvas;
     private GameObject Pointer;
     
     
@@ -47,8 +48,10 @@ public class DrawFunctionLine : MonoBehaviour
         player = GameObject.Find ("Player");
         Pointer = GameObject.Find ("Pointer");
         m_tr = this.gameObject.GetComponent<LineRenderer>();
+        m_tr.sharedMaterial.renderQueue = 3000;
+        //m_tr.sharedMaterial.SetTextureOffset("_MainTex", new Vector2(0, 1000000000));
         //drawManager = player.GetComponent<DrawManager>();
-        canvas=GameObject.Find("mainCanvas").GetComponent<Canvas>();
+        canvas=GameObject.Find("mainCanvas").GetComponent<UnityEngine.Canvas>();
         hpSlider = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
         drawingnow=true;
         
@@ -126,9 +129,9 @@ public class DrawFunctionLine : MonoBehaviour
                                 AnimationCurve curve = m_tr.widthCurve;
                                 for(int i=1;i<=kaisu;i++){
                                    float x = m_tr.widthCurve.keys[i].time*(((float)kaisu+1.0f)/((float)kaisu+2.0f));
-                                    //Debug.Log(x);
+                                   
                                     curve.MoveKey(i,new Keyframe(x,m_tr.widthCurve.keys[i].value));
-                                    //Debug.Log(curve.keys[i].time);
+                                    
                                 }
                         
                                 curve.AddKey(((float)kaisu+1.0f)/((float)kaisu+2.0f), 1.0f*pressure);
@@ -141,8 +144,14 @@ public class DrawFunctionLine : MonoBehaviour
                     
                         }
                     }else{
-                        m_tr.material.renderQueue=m_tr.material.renderQueue+senhonsu;//一個前に
+                        //一個前に
                         
+                        //senhonsu = Painter3DManager.Instance.ActiveCanvas.Strokes.Count;
+                        
+                        //m_tr.material.renderQueue += senhonsu;
+
+                    
+                        //m_tr.material.SetTextureOffset("_MainTex", new Vector2(senhonsu, senhonsu*2));
                         
                         //LineRendererのPositionsのサイズを増やす
                         m_tr.positionCount = NextPositionIndex + 1;

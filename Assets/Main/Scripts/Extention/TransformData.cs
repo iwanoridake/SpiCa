@@ -28,8 +28,8 @@ public class TransformData
     public void DifApplyTo(TransformData prev, Transform transform)
     {
         transform.localPosition += LocalPosition - prev.LocalPosition;
-        Quaternion KakeruGyoretsu = LocalRotation* Quaternion.Inverse(prev.LocalRotation);
-        transform.localRotation = KakeruGyoretsu*transform.localRotation ;
+        Quaternion KakeruGyoretsu = LocalRotation * Quaternion.Inverse(prev.LocalRotation);
+        transform.localRotation = KakeruGyoretsu * transform.localRotation ;
         Vector3 Gyakusu = new Vector3(1/prev.LocalScale.x, 1/prev.LocalScale.y, 1/prev.LocalScale.z);
         transform.localScale = Vector3.Scale(transform.localScale,Vector3.Scale(LocalScale,Gyakusu));
 
