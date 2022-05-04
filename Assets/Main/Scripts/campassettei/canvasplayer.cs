@@ -154,6 +154,10 @@ public class canvasplayer : MonoBehaviour
         Vector3 objsc = new Vector3(sliderScale.value,sliderScale.value,sliderScale.value);
         targetobj.transform.localScale = objsc;
     }*/
+    public void CanvasDeleteButton() {
+        Painter3DManager.Instance.ClearActiveCanvas();
+        
+    }
   
 
 

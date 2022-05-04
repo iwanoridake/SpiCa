@@ -209,8 +209,8 @@ namespace uWintab
                 if(CurrentStroke != null)
                 {
                     //アンドゥできるようにしておく
-                    //Undo.IncrementCurrentGroup();
-                    //Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
+                    Undo.IncrementCurrentGroup();
+                    Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
                     
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
                     CurrentStroke= null;

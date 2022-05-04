@@ -33,8 +33,11 @@ public class Hider : MonoBehaviour
     private bool CanvasAnimationOn = false;
 
     float _period = 5;
+    //
+    private TransformData t;
 
     void Start(){
+        if (Painter3DManager.Instance != null)
         canvas = Painter3DManager.Instance.ActiveCanvas;
         image = GameObject.FindGameObjectWithTag("inputimage");
 
@@ -48,13 +51,14 @@ public class Hider : MonoBehaviour
     
     private void Update()
     {
-        canvas = Painter3DManager.Instance.ActiveCanvas;
+        
         //アニメーションさせる
         if (CanvasAnimationOn)
         {            
-            if (canvas != null)
+            
+            if (Painter3DManager.Instance != null)
             {
-                
+                canvas = Painter3DManager.Instance.ActiveCanvas;
                 //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
                 canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
                 
@@ -68,8 +72,18 @@ public class Hider : MonoBehaviour
 
     //キャンバスアニメーション用
     public void OnCanvasAnimationToggleChanged(){
-     
-        CanvasAnimationOn = CanvasAnimationToggle.isOn;
+
+        if (CanvasAnimationToggle.isOn){
+            t = new TransformData(canvas.gameObject.transform);
+            CanvasAnimationOn = CanvasAnimationToggle.isOn;
+            
+        }else{
+            CanvasAnimationOn = CanvasAnimationToggle.isOn;
+            t.ApplyTo(canvas.gameObject.transform);
+
+        }
+            
+        
         
     }
     

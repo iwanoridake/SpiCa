@@ -38,6 +38,7 @@ public class Painter3DManager : MonoBehaviour
         Canvas m_ActiveCanvas;
         public Canvas ActiveCanvas { get { return m_ActiveCanvas; } set { m_ActiveCanvas = value; } }
         public List<Canvas> AllCanvases { get { return m_AllCanvases; } }
+        public int canvasAllCount = 1;
         #endregion       
 
         #region Undo/Redo
@@ -100,10 +101,10 @@ public class Painter3DManager : MonoBehaviour
         {
             #region Keyboard input
             // Clear all
-            if (Input.GetKey(m_ModifierKey) && Input.GetKeyDown(KeyCode.C))
-            {
-                ClearAll();
-            }
+            //if (Input.GetKey(m_ModifierKey) && Input.GetKeyDown(KeyCode.C))
+            //{
+                //ClearAll();
+            //}
 
             // Quit application
             if (Input.GetKey(m_ModifierKey) && Input.GetKeyDown(KeyCode.Escape))
@@ -167,14 +168,18 @@ public class Painter3DManager : MonoBehaviour
             m_UndoStack.Clear();
         }
 
-        public void ClearAll()
+        public void ClearActiveCanvas()
         {
-            for (int i = 0; i < m_AllCanvases.Count; i++)
-            {
-                m_AllCanvases[i].Clear();
-                m_ActiveStrokeStack.Clear();
-                m_UndoStack.Clear();
+            foreach(Stroke s in ActiveCanvas.Strokes){
+                Destroy(s.gameObject);
             }
+            AllCanvases.Remove(ActiveCanvas);
+            
+            Destroy(ActiveCanvas.gameObject);
+            ActiveCanvas =  AllCanvases[AllCanvases.Count-1];
+            m_ActiveCanvasIndex = AllCanvases.Count-1;
+            ActiveCanvas.gameObject.SetActive(true);
+            
         }
         #endregion        
     }

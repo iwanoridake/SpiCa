@@ -22,7 +22,8 @@ public class Canvas : MonoBehaviour
             tempobj.SetActive(false);
         }
         
-        this.gameObject.name = "Canvas " + Painter3DManager.Instance.m_AllCanvases.Count;
+        this.gameObject.name = "Canvas " + Painter3DManager.Instance.canvasAllCount;
+        Painter3DManager.Instance.canvasAllCount++;
         Painter3DManager.Instance.ActiveCanvas = this;
         Painter3DManager.Instance.AllCanvases.Add(this);
         
