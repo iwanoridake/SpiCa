@@ -25,7 +25,7 @@ public class BrushInCanvas : MonoBehaviour
                 GameObject listToggle = Instantiate(listTogglePrefab) as GameObject;
                 //Vertical Layout Group の子にする
                 listToggle.transform.SetParent(list,false);
-                listToggle.transform.FindChild("Label").GetComponent<Text>().text = element.gameObject.name;
+                listToggle.transform.Find("Label").GetComponent<Text>().text = element.gameObject.name;
                 listToggle.SetActive(true);
                 listToggle.GetComponent<Toggle>().isOn = true;
 
