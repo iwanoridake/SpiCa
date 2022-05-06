@@ -25,7 +25,7 @@ public class UIpen : MonoBehaviour
         //penposition = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), tablet_.y*Screen.currentResolution.height-(Screen.currentResolution.height-Screen.height),0);
         penposition = new Vector3(tablet_.x*Screen.currentResolution.width, (tablet_.y)*Screen.currentResolution.height,0);
         //液タブの時はこれで
-        //transform.position = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
+        //penposition = new Vector3(tablet_.x*Screen.currentResolution.width-(Screen.currentResolution.width-Screen.width), (tablet_.y)*Screen.currentResolution.height,0);
         transform.position =penposition;
        
     }

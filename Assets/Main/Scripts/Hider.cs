@@ -60,7 +60,12 @@ public class Hider : MonoBehaviour
             {
                 canvas = Painter3DManager.Instance.ActiveCanvas;
                 //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
-                canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
+                //canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
+                canvas.gameObject.transform.RotateAround(
+                    canvas.transform.position,
+                    canvas.transform.up,
+                    360 / _period * Time.deltaTime
+                 );
                 
             }
                 

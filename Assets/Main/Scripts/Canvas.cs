@@ -46,18 +46,19 @@ public class Canvas : MonoBehaviour
             foreach(Stroke element in m_Strokes)
             {
                 
-                //nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
-                LineRenderer line = element.LineObject.GetComponent<LineRenderer>();
-                var Points = new Vector3[line.positionCount];
-                int cnt = line.GetPositions(Points);
+                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+
+                //LineRenderer line = element.LineObject.GetComponent<LineRenderer>();
+                //var Points = new Vector3[line.positionCount];
+                //int cnt = line.GetPositions(Points);
                 
-                Vector3 Gyakusu = new Vector3(1/prevTransformData.LocalScale.x, 1/prevTransformData.LocalScale.y, 1/prevTransformData.LocalScale.z);
-                M.SetTRS(nowTransformData.LocalPosition-prevTransformData.LocalPosition,nowTransformData.LocalRotation * Quaternion.Inverse(prevTransformData.LocalRotation),Vector3.Scale(nowTransformData.LocalScale,Gyakusu));
-                for (int i = 0; i <  line.positionCount; i++)
-                {
-                    Vector3 point = M * new Vector4(Points[i].x, Points[i].y, Points[i].z, 1);
-                    line.SetPosition(i, point);
-                }
+                //Vector3 Gyakusu = new Vector3(1/prevTransformData.LocalScale.x, 1/prevTransformData.LocalScale.y, 1/prevTransformData.LocalScale.z);
+                //M.SetTRS(nowTransformData.LocalPosition-prevTransformData.LocalPosition,nowTransformData.LocalRotation * Quaternion.Inverse(prevTransformData.LocalRotation),Vector3.Scale(nowTransformData.LocalScale,Gyakusu));
+                //for (int i = 0; i <  line.positionCount; i++)
+                //{
+                    //Vector3 point = M * new Vector4(Points[i].x, Points[i].y, Points[i].z, 1);
+                    //line.SetPosition(i, point);
+                //}
 
             }
 
@@ -82,7 +83,7 @@ public class Canvas : MonoBehaviour
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
             
-            s.transform.SetParent(transform);
+            //s.transform.SetParent(transform);
             
             
 

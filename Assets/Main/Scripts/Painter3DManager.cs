@@ -106,21 +106,35 @@ public class Painter3DManager : MonoBehaviour
                 //ClearAll();
             //}
 
-            // Quit application
-            if (Input.GetKey(m_ModifierKey) && Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                Application.Quit();
+                
+                UndoLastStroke();
             }
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+                
+                Redo();
+            }
+            
+
+
+            // Quit application
+            //if (Input.GetKey(m_ModifierKey) && Input.GetKeyDown(KeyCode.Escape))
+            //{
+                //Application.Quit();
+            //}
+
+
             #endregion
         }
         
         
          
         #region Undo Redo Clear
-        private void ActiveBrush_OnStrokeCompleteEvent(Stroke stroke)
+        public void ActiveBrush_OnStrokeCompleteEvent(Stroke stroke)
         {
             m_StrokeCount++;
-            // Push the completed stroke to the active stroke stack
             m_ActiveStrokeStack.Push(stroke);
         }
 
@@ -136,7 +150,7 @@ public class Painter3DManager : MonoBehaviour
                 { 
                     m_UndoStack.Push(stroke);  
                     // Stop stroke rendering
-                    //stroke.m_StrokeRenderer.SetRenderState(false);
+                    stroke.LineObject.GetComponent<LineRenderer>().enabled = false;
                     m_ActiveCanvas.RemoveUndoStroke(stroke);
                 }
                 else
@@ -156,7 +170,7 @@ public class Painter3DManager : MonoBehaviour
                 m_ActiveCanvas.AddRedoStroke(stroke);
 
                 // Start stroke rendering
-                //stroke.m_StrokeRenderer.SetRenderState(true);
+                stroke.LineObject.GetComponent<LineRenderer>().enabled = true;
             }
         }
 
