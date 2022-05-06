@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpiCa;
 
+namespace SpiCa{
 public class TransformData
 {
     public Vector3 LocalPosition = Vector3.zero;
@@ -25,13 +27,22 @@ public class TransformData
         transform.localScale = LocalScale;
     }
 
-    public void DifApplyTo(TransformData prev, Transform transform)
+    public void DifApplyTo(TransformData prev, Transform Applysaki)
     {
-        transform.localPosition += LocalPosition - prev.LocalPosition;
-        Quaternion KakeruGyoretsu = LocalRotation * Quaternion.Inverse(prev.LocalRotation);
-        transform.localRotation = KakeruGyoretsu * transform.localRotation ;
+        Applysaki.localPosition += LocalPosition - prev.LocalPosition;
+
+        //一旦回転して軸を合わせてから拡大縮小
+        Quaternion ApplysakiRotation = Applysaki.localRotation;
+        Applysaki.localRotation = prev.LocalRotation;
         Vector3 Gyakusu = new Vector3(1/prev.LocalScale.x, 1/prev.LocalScale.y, 1/prev.LocalScale.z);
-        transform.localScale = Vector3.Scale(transform.localScale,Vector3.Scale(LocalScale,Gyakusu));
+        Applysaki.localScale = Vector3.Scale(Applysaki.localScale,Vector3.Scale(LocalScale,Gyakusu));
+
+        //戻すついでに回転
+        Quaternion KakeruGyoretsu = LocalRotation * Quaternion.Inverse(prev.LocalRotation);
+        Applysaki.localRotation = KakeruGyoretsu * ApplysakiRotation ;
+        
+        
 
     }
+}
 }

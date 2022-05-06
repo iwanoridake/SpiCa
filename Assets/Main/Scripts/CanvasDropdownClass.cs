@@ -26,11 +26,11 @@ public class CanvasDropdownClass : MonoBehaviour
         //キャンバスドロップダウン用メソッド
 
         public void CanvasChanger() {
-            if(Painter3DManager.Instance !=null){
-                Painter3DManager.Instance.ActiveCanvas.gameObject.SetActive(false);
+            if(Painter3DManager.Instance != null){
+                Painter3DManager.Instance.ActiveCanvas.ChangeCanvasFalse();
             }
             Painter3DManager.Instance.ActiveCanvas = Painter3DManager.Instance.m_AllCanvases[Canvasdropdown.value];
-            Painter3DManager.Instance.ActiveCanvas.gameObject.SetActive(true);
+            Painter3DManager.Instance.ActiveCanvas.ChangeCanvasTrue();
 
         
              Painter3DManager.Instance.m_ActiveCanvasIndex = Canvasdropdown.value;

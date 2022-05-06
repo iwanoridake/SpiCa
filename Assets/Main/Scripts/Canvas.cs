@@ -13,13 +13,11 @@ public class Canvas : MonoBehaviour
     public List<Stroke> Strokes { get { return m_Strokes; } }
     private TransformData prevTransformData;
     private TransformData nowTransformData;
-    private GameObject tempobj;
 
     void Awake()
     {
         if(Painter3DManager.Instance.ActiveCanvas !=null){
-            tempobj = Painter3DManager.Instance.ActiveCanvas.gameObject;
-            tempobj.SetActive(false);
+            Painter3DManager.Instance.ActiveCanvas.ChangeCanvasFalse();
         }
         
         this.gameObject.name = "Canvas " + Painter3DManager.Instance.canvasAllCount;
@@ -45,8 +43,8 @@ public class Canvas : MonoBehaviour
         {
             foreach(Stroke element in m_Strokes)
             {
-                nowTransformData = new TransformData(this.gameObject.transform);
-                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+                //nowTransformData = new TransformData(this.gameObject.transform);
+                //nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
 
             }
 
@@ -66,11 +64,13 @@ public class Canvas : MonoBehaviour
 
             // Name stroke with index
             s.name = "Stroke " + m_Strokes.Count;
+            
 
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
             
-            //s.transform.SetParent(transform);
+            s.transform.SetParent(transform);
+            
             
 
             // Turn this on if you want to keep brush stroks consistent to canvas scale rather than world
@@ -115,6 +115,36 @@ public class Canvas : MonoBehaviour
             m_Strokes.Clear();
         }
 
+    public void ChangeCanvasFalse()
+    {
+        
+        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        if(this.gameObject.GetComponent<MeshCollider>() != null)
+            this.gameObject.GetComponent<MeshCollider>().enabled = false;
+        if(this.gameObject.GetComponent<SphereCollider>() != null)
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
+        if(this.gameObject.GetComponent<CapsuleCollider>() != null)
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        if(this.gameObject.GetComponent<BoxCollider>() != null)
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            
+
+    }
+    public void ChangeCanvasTrue()
+    {
+        
+        this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        
+        if(this.gameObject.GetComponent<MeshCollider>() != null)
+            this.gameObject.GetComponent<MeshCollider>().enabled = true;
+        if(this.gameObject.GetComponent<SphereCollider>() != null)
+            this.gameObject.GetComponent<SphereCollider>().enabled = true;
+        if(this.gameObject.GetComponent<CapsuleCollider>() != null)
+            this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        if(this.gameObject.GetComponent<BoxCollider>() != null)
+            this.gameObject.GetComponent<BoxCollider>().enabled = true;
+    }
     //キャンバス情報の保存
     
 }

@@ -178,7 +178,7 @@ public class Painter3DManager : MonoBehaviour
             Destroy(ActiveCanvas.gameObject);
             ActiveCanvas =  AllCanvases[AllCanvases.Count-1];
             m_ActiveCanvasIndex = AllCanvases.Count-1;
-            ActiveCanvas.gameObject.SetActive(true);
+            ActiveCanvas.ChangeCanvasTrue();
             
         }
         #endregion        
