@@ -31,15 +31,17 @@ public class TransformData
     {
         Applysaki.localPosition += LocalPosition - prev.LocalPosition;
 
-        //一旦回転して軸を合わせてから拡大縮小
-        Quaternion ApplysakiRotation = Applysaki.localRotation;
-        Applysaki.localRotation = prev.LocalRotation;
+        
+        
+        //拡大縮小
         Vector3 Gyakusu = new Vector3(1/prev.LocalScale.x, 1/prev.LocalScale.y, 1/prev.LocalScale.z);
         Applysaki.localScale = Vector3.Scale(Applysaki.localScale,Vector3.Scale(LocalScale,Gyakusu));
 
-        //戻すついでに回転
+        //回す
         Quaternion KakeruGyoretsu = LocalRotation * Quaternion.Inverse(prev.LocalRotation);
-        Applysaki.localRotation = KakeruGyoretsu * ApplysakiRotation ;
+        Applysaki.localRotation = KakeruGyoretsu * Applysaki.localRotation ;
+
+        
         
         
 

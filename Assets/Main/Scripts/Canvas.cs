@@ -43,8 +43,8 @@ public class Canvas : MonoBehaviour
         {
             foreach(Stroke element in m_Strokes)
             {
-                //nowTransformData = new TransformData(this.gameObject.transform);
-                //nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+                nowTransformData = new TransformData(this.gameObject.transform);
+                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
 
             }
 
@@ -69,7 +69,7 @@ public class Canvas : MonoBehaviour
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
             
-            s.transform.SetParent(transform);
+            //s.transform.SetParent(transform);
             
             
 
