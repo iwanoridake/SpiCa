@@ -53,6 +53,19 @@ namespace uWintab
             
             tablet_ = FindObjectOfType<Tablet>();
 
+            //ブラシをすべて親から出す
+            if(Painter3DManager.Instance != null){
+                if(Painter3DManager.Instance.AllCanvases != null){
+                    foreach(Canvas c in Painter3DManager.Instance.AllCanvases)
+                    {
+                        foreach(Stroke element in c.m_Strokes)
+                        {             
+                            element.transform.parent=null;
+                        }
+                    }
+                }
+            }
+
             
 
         }
@@ -212,8 +225,13 @@ namespace uWintab
                     Undo.IncrementCurrentGroup();
                     Undo.RegisterCreatedObjectUndo (CurrentStroke.LineObject, "line");
                     
+                     //描き終わったらuse world spaceを切る
+                    //CurrentStroke.LineObject.GetComponent<LineRenderer>().useWorldSpace = false;
+                    
                     //現在描画中の線があったらnullにして次の線を描けるようにする。
-                    CurrentStroke= null;
+                    CurrentStroke = null;
+
+                   
                 }
                     
                 

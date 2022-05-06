@@ -74,10 +74,34 @@ public class Hider : MonoBehaviour
     public void OnCanvasAnimationToggleChanged(){
 
         if (CanvasAnimationToggle.isOn){
+            //ブラシを動かせるように親にする
+            if(Painter3DManager.Instance != null){
+            if(Painter3DManager.Instance.AllCanvases != null){
+                foreach(Canvas c in Painter3DManager.Instance.AllCanvases)
+                {
+                    foreach(Stroke element in c.m_Strokes)
+                    {             
+                        element.transform.SetParent(c.gameObject.transform);
+                    }
+                }
+            }
+            }
             t = new TransformData(canvas.gameObject.transform);
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
             
         }else{
+            //ブラシをすべて親から出す
+            if(Painter3DManager.Instance != null){
+                if(Painter3DManager.Instance.AllCanvases != null){
+                    foreach(Canvas c in Painter3DManager.Instance.AllCanvases)
+                    {
+                        foreach(Stroke element in c.m_Strokes)
+                        {             
+                            element.transform.parent=null;
+                        }
+                    }
+                }
+            }
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
             t.ApplyTo(canvas.gameObject.transform);
 

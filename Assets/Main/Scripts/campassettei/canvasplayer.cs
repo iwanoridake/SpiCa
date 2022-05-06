@@ -34,6 +34,19 @@ public class canvasplayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ブラシを動かせるように親にする
+        if(Painter3DManager.Instance != null){
+            if(Painter3DManager.Instance.AllCanvases != null){
+                foreach(Canvas c in Painter3DManager.Instance.AllCanvases)
+                {
+                    foreach(Stroke element in c.m_Strokes)
+                    {             
+                        
+                        element.transform.SetParent(c.gameObject.transform);
+                    }
+                }
+            }
+        }
         
     }
     public void OnSphereClick() {
@@ -87,8 +100,9 @@ public class canvasplayer : MonoBehaviour
   
     }
     public void OnConfirmClick() {
-  
+        
         SceneManager.LoadScene("byoga");
+        
     }
     public void Slider_x() {
         

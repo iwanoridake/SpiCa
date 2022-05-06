@@ -43,8 +43,10 @@ public class Canvas : MonoBehaviour
         {
             foreach(Stroke element in m_Strokes)
             {
-                nowTransformData = new TransformData(this.gameObject.transform);
-                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+                
+                element.LineObject.GetComponent<LineRenderer>().useWorldSpace = true;
+                //nowTransformData = new TransformData(this.gameObject.transform);
+                //nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
 
             }
 

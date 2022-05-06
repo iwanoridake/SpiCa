@@ -38,6 +38,12 @@ public class TransformData
         Applysaki.localScale = Vector3.Scale(Applysaki.localScale,Vector3.Scale(LocalScale,Gyakusu));
 
         //回す
+        //Vector3 ApplysakiRotationEulers = Applysaki.rotation.eulerAngles;
+        //Applysaki.localRotation.eulerAngles = prev.LocalRotation.eulerAngles;
+        //Applysaki.localRotation.eulerAngles += LocalRotation.eulerAngles -  prev.LocalRotation.eulerAngles;
+        //Applysaki.localRotation.eulerAngles += Applysaki.rotation.eulerAngles-prev.LocalRotation.eulerAngles;
+
+
         Quaternion KakeruGyoretsu = LocalRotation * Quaternion.Inverse(prev.LocalRotation);
         Applysaki.localRotation = KakeruGyoretsu * Applysaki.localRotation ;
 
