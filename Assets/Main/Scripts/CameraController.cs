@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using SpiCa;
 
 public class CameraController : MonoBehaviour {
     //カメラの視点位置を変えるやつ
@@ -53,7 +54,7 @@ public class CameraController : MonoBehaviour {
             
              //Vector3 diff = new Vector3(1f,0f,0f);
             //float d = distance();
-            GameObject canvas = GameObject.FindGameObjectWithTag("3dcanvas");
+            GameObject canvas = Painter3DManager.Instance.ActiveCanvas.gameObject;
             
             if (canvas != null)
             {

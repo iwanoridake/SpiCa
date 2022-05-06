@@ -42,10 +42,11 @@ public class Canvas : MonoBehaviour
         //キャンバスが変形された場合いっしょにブラシも動く
         if (this.gameObject.transform.hasChanged)
         {
+            nowTransformData = new TransformData(this.gameObject.transform);
             foreach(Stroke element in m_Strokes)
             {
-                nowTransformData = new TransformData(this.gameObject.transform);
-                nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
+                
+                //nowTransformData.DifApplyTo( prevTransformData, element.LineObject.transform);
                 LineRenderer line = element.LineObject.GetComponent<LineRenderer>();
                 var Points = new Vector3[line.positionCount];
                 int cnt = line.GetPositions(Points);
@@ -81,7 +82,7 @@ public class Canvas : MonoBehaviour
             // Add stroke to the list and set parent to canvas
             m_Strokes.Add(s);
             
-            //s.transform.SetParent(transform);
+            s.transform.SetParent(transform);
             
             
 

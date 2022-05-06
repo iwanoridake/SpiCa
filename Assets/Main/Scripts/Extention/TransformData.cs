@@ -15,9 +15,9 @@ public class TransformData
 
     public TransformData(Transform transform)
     {
-        LocalPosition = transform.localPosition;
-        LocalRotation = transform.localRotation;
-        LocalScale = transform.localScale;
+        LocalPosition = transform.position;
+        LocalRotation = transform.rotation;
+        LocalScale = transform.lossyScale;
     }
 
     public void ApplyTo(Transform transform)
