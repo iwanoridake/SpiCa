@@ -20,7 +20,7 @@ public class DrawFunctionLine : MonoBehaviour
     
     
     public float width = 1.0f;
-    public float timeout = 0.03f;
+    public float timeout = 0.1f;
     public float minDistance = 0.01f;
     //ブラシが持ってるラインレンダラー
     LineRenderer m_tr;

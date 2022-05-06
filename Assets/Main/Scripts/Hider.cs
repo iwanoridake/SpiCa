@@ -30,7 +30,12 @@ public class Hider : MonoBehaviour
     //アピアランスパネルのバックフェースカリングのトグル
     [SerializeField] Toggle cullingtoggle;
     [SerializeField]Toggle CanvasAnimationToggle;
+    [SerializeField]Toggle CharacterAnimationToggle;
+    [SerializeField]Toggle BrushAnimationToggle;
     private bool CanvasAnimationOn = false;
+    private bool BrushAnimationOn = false;
+    float timeout = 0.1f;
+    float timeElapsed = 0f;
 
     float _period = 5;
     //
@@ -53,26 +58,39 @@ public class Hider : MonoBehaviour
     {
         
         //アニメーションさせる
-        if (CanvasAnimationOn)
-        {            
+                   
             
-            if (Painter3DManager.Instance != null)
-            {
-                if(Painter3DManager.Instance.ActiveCanvas != null)
-                {
+        if (Painter3DManager.Instance != null)
+        {
+            if(Painter3DManager.Instance.ActiveCanvas != null)
+            {   
                 canvas = Painter3DManager.Instance.ActiveCanvas;
-                //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
-                //canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
-                canvas.gameObject.transform.RotateAround(
-                    canvas.transform.position,
-                    canvas.transform.up,
-                    360 / _period * Time.deltaTime
-                 );
+                if (CanvasAnimationOn)
+                { 
+                    //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
+                    //canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
+                    canvas.gameObject.transform.RotateAround(
+                        canvas.transform.position,
+                        canvas.transform.up,
+                        360 / _period * Time.deltaTime
+                    );
+                    
+                
+                }
+                if(BrushAnimationOn)
+                {
+                    timeElapsed += Time.deltaTime;
+                    if(timeElapsed>timeout)
+                    {
+                        foreach(Stroke element in canvas.m_Strokes)
+                        {
+                            element.AnimationValue();
+                        }
+                        timeElapsed = 0;
+                    }
                 }
             }
                 
-            
-            
         }
 
     }
@@ -81,17 +99,70 @@ public class Hider : MonoBehaviour
     public void OnCanvasAnimationToggleChanged(){
 
         if (CanvasAnimationToggle.isOn){
-            if(canvas!=null)
-            t = new TransformData(canvas.gameObject.transform);
+            if(canvas!=null){
+                t = new TransformData(canvas.gameObject.transform);
+                foreach(Stroke element in canvas.m_Strokes)
+                    {
+                            element.MotoCurveIn();
+                    }
+                
+            }
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
-            GameObject.Find("Gazo").GetComponent<AnimatedGif>().Play();
+            
             
         }else{
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
-            if(canvas!=null)
-            t.ApplyTo(canvas.gameObject.transform);
+            if(canvas!=null){
+                t.ApplyTo(canvas.gameObject.transform);
+                foreach(Stroke element in canvas.m_Strokes)
+                    {
+                            element.MotoCurveOut();
+                    }
+            }
+            
+            
+
+        }
+            
+        
+        
+    }
+    public void OnCharacterAnimationToggleChanged(){
+
+        if (CharacterAnimationToggle.isOn){
+            
+            GameObject.Find("Gazo").GetComponent<AnimatedGif>().Play();
+            
+        }else{
+            
             GameObject.Find("Gazo").GetComponent<AnimatedGif>().Pause();
             
+
+        }
+            
+    }
+
+    public void OnBrushAnimationToggleChanged(){
+
+        if (BrushAnimationToggle.isOn){
+            if(canvas!=null){
+                foreach(Stroke element in canvas.m_Strokes)
+                    {
+                            element.MotoCurveIn();
+                    }
+                
+            }
+            BrushAnimationOn = BrushAnimationToggle.isOn;
+            
+            
+        }else{
+            BrushAnimationOn = BrushAnimationToggle.isOn;
+            if(canvas!=null){
+                foreach(Stroke element in canvas.m_Strokes)
+                    {
+                            element.MotoCurveOut();
+                    }
+            }        
 
         }
             

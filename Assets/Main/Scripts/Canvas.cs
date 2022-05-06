@@ -131,33 +131,33 @@ public class Canvas : MonoBehaviour
 
     public void ChangeCanvasFalse()
     {
-        
-        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        this.gameObject.SetActive(true);
+        //this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-        if(this.gameObject.GetComponent<MeshCollider>() != null)
-            this.gameObject.GetComponent<MeshCollider>().enabled = false;
-        if(this.gameObject.GetComponent<SphereCollider>() != null)
-            this.gameObject.GetComponent<SphereCollider>().enabled = false;
-        if(this.gameObject.GetComponent<CapsuleCollider>() != null)
-            this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        if(this.gameObject.GetComponent<BoxCollider>() != null)
-            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+        //if(this.gameObject.GetComponent<MeshCollider>() != null)
+        //    this.gameObject.GetComponent<MeshCollider>().enabled = false;
+        //if(this.gameObject.GetComponent<SphereCollider>() != null)
+        //    this.gameObject.GetComponent<SphereCollider>().enabled = false;
+        //if(this.gameObject.GetComponent<CapsuleCollider>() != null)
+        //    this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //if(this.gameObject.GetComponent<BoxCollider>() != null)
+        //    this.gameObject.GetComponent<BoxCollider>().enabled = false;
             
 
     }
     public void ChangeCanvasTrue()
     {
+        this.gameObject.SetActive(false);
+        //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         
-        this.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        
-        if(this.gameObject.GetComponent<MeshCollider>() != null)
-            this.gameObject.GetComponent<MeshCollider>().enabled = true;
-        if(this.gameObject.GetComponent<SphereCollider>() != null)
-            this.gameObject.GetComponent<SphereCollider>().enabled = true;
-        if(this.gameObject.GetComponent<CapsuleCollider>() != null)
-            this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
-        if(this.gameObject.GetComponent<BoxCollider>() != null)
-            this.gameObject.GetComponent<BoxCollider>().enabled = true;
+        //if(this.gameObject.GetComponent<MeshCollider>() != null)
+        //    this.gameObject.GetComponent<MeshCollider>().enabled = true;
+        //if(this.gameObject.GetComponent<SphereCollider>() != null)
+        //    this.gameObject.GetComponent<SphereCollider>().enabled = true;
+        //if(this.gameObject.GetComponent<CapsuleCollider>() != null)
+        //    this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        //if(this.gameObject.GetComponent<BoxCollider>() != null)
+        //    this.gameObject.GetComponent<BoxCollider>().enabled = true;
     }
     //キャンバス情報の保存
     

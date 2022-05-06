@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
         }
 
         
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2) || Input.GetMouseButtonDown(1))
         {
             preMousePosition = Input.mousePosition;
         }
@@ -130,7 +130,7 @@ public class CameraController : MonoBehaviour {
             LookCameraTarget();
             transform.position += transform.forward * ((transform.position - CameraTarget.transform.position).magnitude - d);//直線移動と曲線移動の誤差修正
         }
-        else if (Input.GetMouseButton(0))//平行移動
+        else if (Input.GetMouseButton(2))//平行移動
         {
             if(Input.mousePosition.x<Screen.width-Screen.width*0.15&&Input.mousePosition.x>Screen.width*0.15){
                 transform.Translate(-diff * Time.deltaTime * moveSpeed * d);

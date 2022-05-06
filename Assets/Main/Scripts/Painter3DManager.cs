@@ -34,7 +34,7 @@ public class Painter3DManager : MonoBehaviour
         #region Canvases
         // Canvas list and active canvas
         public List<Canvas> m_AllCanvases = new List<Canvas>();
-        public int m_ActiveCanvasIndex = 0;
+        public int m_ActiveCanvasIndex = -1;
         Canvas m_ActiveCanvas;
         public Canvas ActiveCanvas { get { return m_ActiveCanvas; } set { m_ActiveCanvas = value; } }
         public List<Canvas> AllCanvases { get { return m_AllCanvases; } }
@@ -190,9 +190,15 @@ public class Painter3DManager : MonoBehaviour
             AllCanvases.Remove(ActiveCanvas);
             
             Destroy(ActiveCanvas.gameObject);
-            ActiveCanvas =  AllCanvases[AllCanvases.Count-1];
+            if(AllCanvases.Count>0)
+            {
+                ActiveCanvas =  AllCanvases[AllCanvases.Count-1];
+                ActiveCanvas.ChangeCanvasTrue();
+            }else{
+                ActiveCanvas = null;
+            } 
             m_ActiveCanvasIndex = AllCanvases.Count-1;
-            ActiveCanvas.ChangeCanvasTrue();
+            
             
         }
         #endregion        

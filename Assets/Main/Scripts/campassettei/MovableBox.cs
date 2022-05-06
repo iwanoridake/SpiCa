@@ -27,7 +27,7 @@ public class MovableBox : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if(GameObject.FindGameObjectWithTag("3dcanvas")!=null)
+        if(Painter3DManager.Instance.ActiveCanvas!=null)
         {
             //canvas = GameObject.FindGameObjectWithTag("3dcanvas");
             canvas = Painter3DManager.Instance.ActiveCanvas.gameObject;
