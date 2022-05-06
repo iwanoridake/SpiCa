@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+namespace SpiCa{
 public class AnimatedGif : MonoBehaviour
 {
 
     //入力画像のフレームレート
     public float framerate = 6;
     //Resoucesフォルダからのパス
+    
     
     //ファイル名のprefix
     public string prefixName = "loop_";
@@ -20,7 +21,7 @@ public class AnimatedGif : MonoBehaviour
     private Material targetMaterial;
     private int currentFrame;
     private float frameTime;
-    private bool isPlaying = true;
+    public bool isPlaying = false;
 
     /// <summary>
     /// 再生
@@ -50,16 +51,18 @@ public class AnimatedGif : MonoBehaviour
 
     private void Start()
     {
-        targetMaterial = gameObject.GetComponent<Renderer>().sharedMaterial;
+        targetMaterial = gameObject.GetComponent<Renderer>().material;
         this.Reset();
         
     }
 
     private void Update()
     {
+        
         if (!isPlaying) return;
         // フレーム時間更新
         frameTime += Time.deltaTime;
+        
         // フレームに更新がある場合
         if (frameTime > 1f / framerate)
         {
@@ -68,7 +71,7 @@ public class AnimatedGif : MonoBehaviour
             // ループ再生の場合は最後のコマで最初に戻る
             if (currentFrame > length && isLoop) currentFrame = 1;
             // ループ再生でない場合は最後のコマで再生終了
-            if (currentFrame >= length &&　!isLoop) isPlaying = false;
+            if (currentFrame >= length && !isLoop) isPlaying = false;
             // 現在のフレームを取得して表示
             string filename;
             if(currentFrame<10){
@@ -86,4 +89,5 @@ public class AnimatedGif : MonoBehaviour
         }
     }
 
+}
 }

@@ -58,6 +58,8 @@ public class Hider : MonoBehaviour
             
             if (Painter3DManager.Instance != null)
             {
+                if(Painter3DManager.Instance.ActiveCanvas != null)
+                {
                 canvas = Painter3DManager.Instance.ActiveCanvas;
                 //canvas.transform.Rotate(Vector3.up, 360 / _period * Time.deltaTime);
                 //canvas.gameObject.transform.localRotation = Quaternion.AngleAxis(360 / _period * Time.deltaTime, canvas.transform.up) * canvas.gameObject.transform.localRotation;
@@ -66,7 +68,7 @@ public class Hider : MonoBehaviour
                     canvas.transform.up,
                     360 / _period * Time.deltaTime
                  );
-                
+                }
             }
                 
             
@@ -79,12 +81,17 @@ public class Hider : MonoBehaviour
     public void OnCanvasAnimationToggleChanged(){
 
         if (CanvasAnimationToggle.isOn){
+            if(canvas!=null)
             t = new TransformData(canvas.gameObject.transform);
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
+            GameObject.Find("Gazo").GetComponent<AnimatedGif>().Play();
             
         }else{
             CanvasAnimationOn = CanvasAnimationToggle.isOn;
+            if(canvas!=null)
             t.ApplyTo(canvas.gameObject.transform);
+            GameObject.Find("Gazo").GetComponent<AnimatedGif>().Pause();
+            
 
         }
             
