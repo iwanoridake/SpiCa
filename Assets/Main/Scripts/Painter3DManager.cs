@@ -106,12 +106,12 @@ public class Painter3DManager : MonoBehaviour
                 //ClearAll();
             //}
 
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 
                 UndoLastStroke();
             }
-            if (Input.GetKeyDown(KeyCode.Y))
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 
                 Redo();

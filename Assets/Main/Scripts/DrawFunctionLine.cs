@@ -146,7 +146,7 @@ public class DrawFunctionLine : MonoBehaviour
                     }else{
                         //一個前に
                         
-                        //senhonsu = Painter3DManager.Instance.ActiveCanvas.Strokes.Count;
+                        senhonsu = Painter3DManager.Instance.ActiveCanvas.Strokes.Count;
                         
                         m_tr.material.renderQueue += senhonsu;
 

@@ -228,6 +228,12 @@ namespace uWintab
            width=hpSlider.value;
  
         }
+        public void OnToolSelect()
+        {
+ 
+
+ 
+        }
         //スライダに現在の太さを返す
         public float GetWidth(){
             return width;
