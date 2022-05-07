@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEditor;
 namespace HSVPicker
@@ -17,9 +18,16 @@ public class LineColorChanger : MonoBehaviour
     LineRenderer lineRenderer;
     //ブラシテクスチャのドロップダウン
     [SerializeField]private Dropdown dropdown;
+    [SerializeField]private Dropdown modedropdown;
+    Material mat;
     //テクスチャのかくのうさき
     private string[] texfilepaths;
-
+    public enum Mode {
+        Fade,
+        Additive,
+        Subtractive,
+        Modulate,
+    }
     private void Awake()
     {
         _prefab = objTemp;
@@ -32,7 +40,10 @@ public class LineColorChanger : MonoBehaviour
             dropdown.options.Add(new Dropdown.OptionData { text = System.IO.Path.GetFileNameWithoutExtension(texfilepaths[i]) });
         }
         dropdown.value=9;
+        //modedropdown.value = 0;
+
         brushtexChanger();
+        //brushmodeChanger();
         
     }
     private void  Update(){
@@ -47,6 +58,7 @@ public class LineColorChanger : MonoBehaviour
             
         } );
     }
+    
     //texファイル名の取得
     private void ReadFiles()
     {
@@ -56,10 +68,46 @@ public class LineColorChanger : MonoBehaviour
     } 
     //dropdownchangeの取得
     public void brushtexChanger() {
-        Material mat = Resources.Load(System.IO.Path.GetFileNameWithoutExtension(texfilepaths[dropdown.value]),typeof(Material)) as Material;
+        mat = Resources.Load(System.IO.Path.GetFileNameWithoutExtension(texfilepaths[dropdown.value]),typeof(Material)) as Material;
         
         //trailRenderer.material=mat;
         lineRenderer.material=mat;
     }  
+
+    public void brushmodeChanger() {
+        mat = lineRenderer.material;
+        if(modedropdown.value==0){
+            SetBlendMode(mat,Mode.Fade);
+        }else if(modedropdown.value==1){
+            SetBlendMode(mat,Mode.Additive);
+        }else if(modedropdown.value==3){
+            SetBlendMode(mat,Mode.Modulate);
+        }else if(modedropdown.value==4){
+            SetBlendMode(mat,Mode.Subtractive);
+        }
+        lineRenderer.material=mat;
+
+    }
+    public static void SetBlendMode(Material material, Mode blendMode) {
+        material.SetFloat("_Mode", (float)blendMode);  // <= これが必要
+
+        switch (blendMode) {
+
+            case Mode.Fade:
+                material.SetOverrideTag("RenderType", "Fade");
+                break;
+
+            case Mode.Additive:
+                material.SetOverrideTag("RenderType", "Additive");
+                break;
+            case Mode.Subtractive:
+                material.SetOverrideTag("RenderType", "Subtractive");
+                break;
+            case Mode.Modulate:
+                material.SetOverrideTag("RenderType", "Modulate");
+                break;
+        }
+        
+    }
 }
 }

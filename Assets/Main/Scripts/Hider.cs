@@ -32,9 +32,13 @@ public class Hider : MonoBehaviour
     [SerializeField]Toggle CanvasAnimationToggle;
     [SerializeField]Toggle CharacterAnimationToggle;
     [SerializeField]Toggle BrushAnimationToggle;
+
+    [SerializeField]Toggle ReverseToggle;
+    [SerializeField] Slider hpSlider;
+
     private bool CanvasAnimationOn = false;
     private bool BrushAnimationOn = false;
-    float timeout = 0.1f;
+    public float timeout = 0.2f;
     float timeElapsed = 0f;
 
     float _period = 5;
@@ -72,7 +76,7 @@ public class Hider : MonoBehaviour
                     canvas.gameObject.transform.RotateAround(
                         canvas.transform.position,
                         canvas.transform.up,
-                        360 / _period * Time.deltaTime
+                        ReverseToggle.isOn?(360 / _period * Time.deltaTime):(-360 / _period * Time.deltaTime)
                     );
                     
                 
@@ -168,6 +172,12 @@ public class Hider : MonoBehaviour
             
         
         
+    }
+    public void OnSppedchange()
+    {
+ 
+        _period=hpSlider.value;
+ 
     }
     
  

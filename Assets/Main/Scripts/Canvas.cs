@@ -131,7 +131,7 @@ public class Canvas : MonoBehaviour
 
     public void ChangeCanvasFalse()
     {
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(false);
         //this.gameObject.GetComponent<MeshRenderer>().enabled = false;
 
         //if(this.gameObject.GetComponent<MeshCollider>() != null)
@@ -147,7 +147,7 @@ public class Canvas : MonoBehaviour
     }
     public void ChangeCanvasTrue()
     {
-        this.gameObject.SetActive(false);
+        this.gameObject.SetActive(true);
         //this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         
         //if(this.gameObject.GetComponent<MeshCollider>() != null)

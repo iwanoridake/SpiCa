@@ -20,7 +20,7 @@ public class DrawFunctionLine : MonoBehaviour
     
     
     public float width = 1.0f;
-    public float timeout = 0.1f;
+    public float timeout = 0.05f;
     public float minDistance = 0.01f;
     //ブラシが持ってるラインレンダラー
     LineRenderer m_tr;
@@ -48,7 +48,7 @@ public class DrawFunctionLine : MonoBehaviour
         player = GameObject.Find ("Player");
         Pointer = GameObject.Find ("Pointer");
         m_tr = this.gameObject.GetComponent<LineRenderer>();
-        m_tr.sharedMaterial.renderQueue = 3000;
+        //m_tr.sharedMaterial.renderQueue = 3000;
         //m_tr.sharedMaterial.SetTextureOffset("_MainTex", new Vector2(0, 1000000000));
         //drawManager = player.GetComponent<DrawManager>();
         canvas=GameObject.Find("mainCanvas").GetComponent<UnityEngine.Canvas>();

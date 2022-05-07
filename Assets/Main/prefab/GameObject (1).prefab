@@ -102,8 +102,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.40392157, g: 0.12156863, b: 0.09019608, a: 1}
-      key1: {r: 0.40392157, g: 0.12156863, b: 0.09019608, a: 1}
+      key0: {r: 0.15294118, g: 0, b: 1, a: 1}
+      key1: {r: 0.15294118, g: 0, b: 1, a: 1}
       key2: {r: 0.079476655, g: 0.567685, b: 0.8867924, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -162,6 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   width: 1
-  timeout: 0.05
+  timeout: 0.01
   minDistance: 0.01
   hpSlider: {fileID: 0}
