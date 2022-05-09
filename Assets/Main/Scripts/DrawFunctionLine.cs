@@ -34,7 +34,7 @@ public class DrawFunctionLine : MonoBehaviour
     static int senhonsu=0;
     //ブラシテクスチャのスライダ用
     public Slider hpSlider;
-    //public Toggle OverWriteToggle;
+    public Toggle OverWriteToggle;
     public bool OverWrite = true;
     
     //いろいろ格納
@@ -55,7 +55,7 @@ public class DrawFunctionLine : MonoBehaviour
         //drawManager = player.GetComponent<DrawManager>();
         canvas=GameObject.Find("mainCanvas").GetComponent<UnityEngine.Canvas>();
         hpSlider = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
-        //OverWriteToggle = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("OverWriteToggle").GetComponent<Toggle>();
+        OverWriteToggle = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("OverWriteToggle").GetComponent<Toggle>();
         drawingnow=true;
         
         
@@ -104,7 +104,7 @@ public class DrawFunctionLine : MonoBehaviour
             if  (tablet_.pressure!=0)  
             {
                 width=hpSlider.value;
-                //OverWrite = OverWriteToggle.isOn;
+                OverWrite = OverWriteToggle.isOn;
 
 
                 Vector3 penpoint = Pointer.GetComponent<UIpen>().penposition;
