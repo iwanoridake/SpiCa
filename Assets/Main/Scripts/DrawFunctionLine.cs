@@ -34,6 +34,8 @@ public class DrawFunctionLine : MonoBehaviour
     static int senhonsu=0;
     //ブラシテクスチャのスライダ用
     public Slider hpSlider;
+    //public Toggle OverWriteToggle;
+    public bool OverWrite = true;
     
     //いろいろ格納
     void Reset()
@@ -53,7 +55,9 @@ public class DrawFunctionLine : MonoBehaviour
         //drawManager = player.GetComponent<DrawManager>();
         canvas=GameObject.Find("mainCanvas").GetComponent<UnityEngine.Canvas>();
         hpSlider = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("Slider").GetComponent<Slider>();
+        //OverWriteToggle = canvas.transform.Find("TOOL").transform.Find("brushcustom").transform.Find("OverWriteToggle").GetComponent<Toggle>();
         drawingnow=true;
+        
         
     }
     void LateUpdate()
@@ -100,6 +104,9 @@ public class DrawFunctionLine : MonoBehaviour
             if  (tablet_.pressure!=0)  
             {
                 width=hpSlider.value;
+                //OverWrite = OverWriteToggle.isOn;
+
+
                 Vector3 penpoint = Pointer.GetComponent<UIpen>().penposition;
                 //print(penpoint);
                 Ray ray = Camera.main.ScreenPointToRay (penpoint);
@@ -116,7 +123,8 @@ public class DrawFunctionLine : MonoBehaviour
                         if(Vector3.Distance(hit.point, positions[cnt-1])>minDistance){
                             
                             //上書きシェーダはこっち
-                            //senhonsu++;
+                            
+                            senhonsu++;
 
                             //LineRendererのPositionsのサイズを増やす
                             m_tr.positionCount = NextPositionIndex + 1;
@@ -147,7 +155,8 @@ public class DrawFunctionLine : MonoBehaviour
                         //一個前に
                         
                         senhonsu = Painter3DManager.Instance.ActiveCanvas.Strokes.Count;
-                        
+
+                        if(OverWrite)
                         m_tr.material.renderQueue += senhonsu;
 
                     
