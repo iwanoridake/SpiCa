@@ -76,7 +76,7 @@ public class Hider : MonoBehaviour
                     canvas.gameObject.transform.RotateAround(
                         canvas.transform.position,
                         canvas.transform.up,
-                        ReverseToggle.isOn?(360 / _period * Time.deltaTime):(-360 / _period * Time.deltaTime)
+                        ReverseToggle.isOn?(360 / (2*_period) * Time.deltaTime):(-360 / (2*_period) * Time.deltaTime)
                     );
                     
                 
