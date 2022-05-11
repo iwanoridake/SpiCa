@@ -27,7 +27,7 @@ namespace uWintab
         //現在描画中のLineObject;
         private Stroke CurrentStroke = null;
         //消しゴム適用
-        private GameObject kesubrush = null;
+        private Stroke kesubrush = null;
         //選択適用
         private GameObject selectbrush = null;
         //レイヤーはデフォルトで1
@@ -94,7 +94,7 @@ namespace uWintab
                 RaycastHit hit;
                 if (Physics.Raycast (ray, out hit)) {
                     
-                    kesubrush = searchTag(hit.point, "brush");
+                    kesubrush = searchBrush(hit.point);
 
                     
                     
@@ -104,7 +104,7 @@ namespace uWintab
             {
                 if(kesubrush != null)
                 {
-                    if(nearD < 2)
+                    if(nearD < 10)
                     {
                         int Index = Painter3DManager.Instance.ActiveCanvas.m_Strokes.FindIndex(s => s.name == kesubrush.name);
                         Painter3DManager.Instance.ActiveCanvas.RemoveAndDestroyStroke( Index );
@@ -129,16 +129,16 @@ namespace uWintab
                 RaycastHit hit;
                 if (Physics.Raycast (ray, out hit)) {
                     
-                    selectbrush = searchTag(hit.point, "brush");
+                    ///selectbrush = searchBrush(hit.point);
                     
                     
                     premousePos = Input.mousePosition;
-                    if(nearD < 2)
-                     MoveLine(selectbrush, Input.mousePosition);
+                    //if(nearD < 2)
+                     //MoveLine(selectbrush, Input.mousePosition);
                      
-                    selectbrush = null;
+                    //selectbrush = null;
                    
-                    nearD = 100;
+                    //nearD = 100;
                     
                 } 
              }
@@ -240,22 +240,22 @@ namespace uWintab
         }
 
         //消しゴムが近くのブラシ探す用
-        GameObject searchTag(Vector3 nowposition, string tagName){
+        Stroke searchBrush(Vector3 nowposition){
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
         //string nearObjName = "";    //オブジェクト名称
-        GameObject targetObj = null; //オブジェクト
+        Stroke target = null; //オブジェクト
 
         //タグ指定されたオブジェクトを配列で取得する
-        foreach (GameObject obj in  GameObject.FindGameObjectsWithTag(tagName)){
+        foreach (Stroke s in Painter3DManager.Instance.ActiveCanvas.m_Strokes){
             
-            LineRenderer line = obj.GetComponent<LineRenderer>();
+            LineRenderer line = s.gameObject.GetComponent<LineRenderer>();
             //TrailRenderer line = obj.GetComponent<TrailRenderer>();
             
             var positions = new Vector3[line.positionCount];
             int cnt = line.GetPositions(positions);
             foreach (Vector3 objpos in  positions){
-                if(obj.layer == layerdropdown.value+9){
+                if(s.gameObject.layer == layerdropdown.value+9){
                 //自身とブラシの距離を取得
                     tmpDis = Vector3.Distance(objpos,nowposition);
                     
@@ -265,7 +265,7 @@ namespace uWintab
                     if (nearDis == 0 || nearDis > tmpDis){
                     nearDis = tmpDis;
                     //nearObjName = obs.name;
-                    targetObj = obj;
+                    target = s;
                     }
                 }
             }
@@ -274,7 +274,7 @@ namespace uWintab
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         nearD = nearDis;
-        return targetObj;
+        return target;
         
     }
     }
