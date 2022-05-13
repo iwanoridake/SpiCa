@@ -38,7 +38,7 @@ public class Hider : MonoBehaviour
 
     private bool CanvasAnimationOn = false;
     private bool BrushAnimationOn = false;
-    public float timeout = 0.2f;
+    public float timeout = 0.4f;
     float timeElapsed = 0f;
 
     float _period = 5;
